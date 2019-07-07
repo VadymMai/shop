@@ -1,1 +1,8 @@
-<p>categories works!</p>
+<div class="row">
+    <div class="col">
+        <h1>Categories</h1>
+        <div class="row">
+            <app-cat-card [ngClass]="['col-md-4']" *ngFor="let i of categories" [category]="i"></app-cat-card>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -14,7 +15,8 @@ import { ProductComponent } from './product/product.component';
   declarations: [HomeComponent, AboutComponent, ContactsComponent, CategoriesComponent, CategoryComponent, ProductComponent],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { }
