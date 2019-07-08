@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavMainComponent } from './header/nav-main/nav-main.component';
 import { CatCardComponent } from './cat-card/cat-card.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CatCardComponent } from './cat-card/cat-card.component';
     HeaderComponent,
     FooterComponent,
     NavMainComponent,
-    CatCardComponent
+    CatCardComponent,
+    ProductCardComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { CatCardComponent } from './cat-card/cat-card.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    CatCardComponent
+    CatCardComponent,
+    ProductCardComponent
   ]
 })
 export class ComponentsModule { }

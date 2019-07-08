@@ -7,18 +7,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
   categories = [
-    {
-      title: 'Category 1',
-      img: 'https://i2.rozetka.ua/goods/9211976/64164322_images_9211976970.png'
-    },
-    {
-      title: 'Category 2',
-      img: 'https://starylev.com.ua/files/books/python_for_kids_0.png'
-    },
-    {
-      title: 'Category 3',
-      img: 'https://homeoutlet.co/img/us/300/B00IE94WY4_homeoutlet.jpg'
-    }
+      {
+          id: '001',
+          title: 'Дитячі книги',
+          img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      },
+      {
+          id: '002',
+          title: 'Художня література',
+          img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      },
+      {
+          id: '003',
+          title: 'Бізнес література',
+          img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      },
+      {
+          id: '004',
+          title: 'Книги для батьків',
+          img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      },
+      {
+          id: '005',
+          title: 'Підручники',
+          img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      },
+      {
+          id: '006',
+          title: 'Комікси',
+          img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      },
   ];
 
   constructor() { }

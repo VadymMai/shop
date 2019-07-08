@@ -1,1 +1,18 @@
-<p>product works!</p>
+<div class="row mb-5 mt-5">
+    <div class="col col-md-4 d-flex justify-content-center">
+        <img src="{{product.img}}" alt="{{product.title}}">
+    </div>
+    <div class="col col-md-8">
+        <div class="row-no-gutters">
+            <h1>{{product.title}}</h1>
+        </div>
+        <div class="row-no-gutters">
+            <p>{{product.description}}</p>
+            <p>Категорія: {{product.category}}</p>
+            <p>Автор: {{product.author}}</p>
+            <p>ISBN: {{product.isbn}}</p>
+            <p>Ціна: <b>{{product.price}}</b></p>
+            <button mat-button>Купити</button>
+        </div>
+    </div>
+</div>
