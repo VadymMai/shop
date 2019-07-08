@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavMainComponent } from './header/nav-main/nav-main.component';
 import { CatCardComponent } from './cat-card/cat-card.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { FiltersAsideComponent } from './filters-aside/filters-aside.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     FooterComponent,
     NavMainComponent,
     CatCardComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    FiltersAsideComponent
   ],
   imports: [
     CommonModule,
