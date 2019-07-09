@@ -14,7 +14,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CatCardComponent } from './cat-card/cat-card.component';
+import { CategoryCardComponent } from './category-card/category-card.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { FiltersAsideComponent } from './filters-aside/filters-aside.component';
 
@@ -23,7 +23,7 @@ import { FiltersAsideComponent } from './filters-aside/filters-aside.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    CatCardComponent,
+    CategoryCardComponent,
     ProductCardComponent,
     FiltersAsideComponent
   ],
@@ -42,8 +42,9 @@ import { FiltersAsideComponent } from './filters-aside/filters-aside.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    CatCardComponent,
-    ProductCardComponent
+    CategoryCardComponent,
+    ProductCardComponent,
+    FiltersAsideComponent
   ]
 })
 export class ComponentsModule { }

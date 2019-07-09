@@ -1,3 +1,9 @@
 .page-footer {
     background-color: #929FBA;
 }
+
+@media (min-width: 576px) {
+    .subscription-form {
+        max-width: 420px;
+    }
+}
