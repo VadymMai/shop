@@ -5,6 +5,7 @@ import { Input, Component, OnInit  } from '@angular/core';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
 })
+
 export class ProductCardComponent implements OnInit {
   @Input() product: object;
 

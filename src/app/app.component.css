@@ -1,3 +1,12 @@
 .main {
     background: #E8E8E8;
+    padding-top: 56px;
+    transition: padding-top linear 0.3s;
+}
+
+@media (min-width: 600px){
+    .main {
+        padding-top: 64px;
+        transition: padding-top linear 0.3s;
+    }
 }
