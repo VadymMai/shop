@@ -1,26 +1,65 @@
 <div class="row">
-    <div class="col">
-        <h1>Single category</h1>
+    <h1 class="pb-4 mb-4 border-bottom w-100">Single category</h1>
+</div>
+<div class="row wow fadeIn">
+    <div class="col-12 col-md-3 pl-lg-0">
+
+        <div class="py-2 px-3 grey lighten-2">
+            <h3 class="m-0">Категорії:</h3>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Дитячі книги
+                <span class="badge badge-primary badge-pill">2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Художня література
+                <span class="badge badge-primary badge-pill">5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Бізнес література
+                <span class="badge badge-primary badge-pill">20</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Книги для батьків
+                <span class="badge badge-primary badge-pill">2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Підручники
+                <span class="badge badge-primary badge-pill">4</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Комікси
+                <span class="badge badge-primary badge-pill">2</span>
+            </li>
+        </ul>
+
+        <div class="py-2 px-3 grey lighten-2 mt-3">
+            <h3 class="m-0">Фільтри:</h3>
+        </div>
+        <div class="list-group">
+            <div class="custom-control custom-checkbox list-group-item pl-5">
+                <input type="checkbox" class="custom-control-input" id="check1">
+                <label class="custom-control-label" for="check1">Default unchecked</label>
+            </div>
+            <div class="custom-control custom-checkbox list-group-item pl-5">
+                <input type="checkbox" class="custom-control-input" id="check2">
+                <label class="custom-control-label" for="check2">Default unchecked</label>
+            </div>
+            <div class="custom-control custom-checkbox list-group-item pl-5">
+                <input type="checkbox" class="custom-control-input" id="check3">
+                <label class="custom-control-label" for="check3">Default unchecked</label>
+            </div>
+            <div class="custom-control custom-checkbox list-group-item pl-5">
+                <input type="checkbox" class="custom-control-input" id="check4">
+                <label class="custom-control-label" for="check4">Default unchecked</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-md-9">
         <div class="row">
-            <div class="col-3 wrapper py-3 my-3">
-                <ul>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                    <li>Фільтри</li>
-                </ul>
-            </div>
-            <div class="col-9">
-                <div class="row">
-                    <app-product-card [ngClass]="['col-md-4', 'p-3']" *ngFor="let i of products" [product]="i"></app-product-card>
-                </div>
-            </div>
+            <app-product-card class="col-md-6 col-lg-4 mb-4" *ngFor="let i of products" [product]="i"></app-product-card>
         </div>
     </div>
 </div>

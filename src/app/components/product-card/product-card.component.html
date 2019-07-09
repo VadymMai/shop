@@ -1,15 +1,24 @@
-<mat-card class="example-card" routerLink="/categories/{{product.cat_id}}/{{product.id}}">
-    <mat-card-header>
-        <img mat-card-image src="{{product.img}}" alt="{{product.title}}" [ngClass]="['d-block', 'w-100']">
-    </mat-card-header>
-    <mat-card-content>
-        <mat-card-title>{{product.title}}</mat-card-title>
-        <p>Категорія: {{product.category}}</p>
-        <p>Автор: {{product.author}}</p>
-        <p>ISBN: {{product.isbn}}</p>
-        <p>Ціна: <b>{{product.price}}</b></p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>Купити</button>
-    </mat-card-actions>
-</mat-card>
+<div class="card" routerLink="/categories/{{product.cat_id}}/{{product.id}}">
+    <div class="view overlay">
+        <img src="{{product.img}}" class="card-img-top product-img" alt="{{product.title}}">
+        <a>
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+    <div class="card-body text-center">
+        <h5>
+            <strong>
+                <a href="" class="dark-grey-text">{{product.title}}</a>
+            </strong>
+        </h5>
+        <a href="" class="grey-text">
+            <h5>{{product.author}}</h5>
+        </a>
+        <h4 class="font-weight-bold pink-text">
+            <strong>{{product.price}}$</strong>
+        </h4>
+        <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+            <i class="fas fa-shopping-cart ml-1"></i>
+        </button>
+    </div>
+</div>
