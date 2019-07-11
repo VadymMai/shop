@@ -26,10 +26,10 @@
                         <a class="nav-link waves-effect" routerLink="/contacts">Contacts</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Categories
                         </a>
-                        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
+                        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" *ngFor="let item of categories" routerLink="/categories/{{item.cat_id}}">{{item.category}}</a>
                         </div>
                     </li>

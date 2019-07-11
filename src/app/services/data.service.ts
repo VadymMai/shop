@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {$} from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-  private data: object[] = [
+  private data: any[] = [
     {
       id: '001',
       img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
@@ -181,12 +181,12 @@ export class DataService {
   }
 
   getСategories(): object[] {
-    let unique: string[] = [];
-    let categories: object[] = this.data.filter((item) => {
-      if (unique.includes(item.cat_id)) {
+    const filteredList: string[] = [];
+    const categories: object[] = this.data.filter((item) => {
+      if (filteredList.includes(item.cat_id)) {
         return false;
       } else {
-        unique.push(item.cat_id);
+        filteredList.push(item.cat_id);
         return true;
       }
     });
@@ -199,3 +199,7 @@ export class DataService {
 
   constructor() { }
 }
+
+
+
+

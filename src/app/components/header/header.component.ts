@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../services/data.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +8,10 @@ import {DataService} from '../../services/data.service';
 })
 export class HeaderComponent implements OnInit {
 
-  categories: object[] = [];
+  categories: object[] = this.dataService.getСategories();
 
   constructor(private dataService: DataService) {}
 
-  ngOnInit() {
-    this.categories = this.dataService.getСategories();
-    console.log(this.categories);
-  }
+  ngOnInit() {}
 
 }
