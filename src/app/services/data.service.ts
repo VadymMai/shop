@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {$} from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -7,13 +6,13 @@ import {$} from 'protractor';
 export class DataService {
   private data: any[] = [
     {
-      id: '001',
+      id: 1,
       img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
-      category: 'Дитячі книги',
-      cat_id: '001',
+      cat_name: 'Дитячі книги',
+      cat_id: 1,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Nigel Rees',
-      title: 'Javascript для дітей - Морґан Нік',
+      name: 'Javascript для дітей - Морґан Нік',
       isbn: '0-553-21311-3',
       price: 8.95,
       old_price: 15,
@@ -21,13 +20,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '002',
+      id: 2,
       img: 'https://i1.rozetka.ua/goods/12100714/59451100_images_12100714656.jpg',
-      category: 'Художня література',
-      cat_id: '002',
+      cat_name: 'Художня література',
+      cat_id: 2,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Evelyn Waugh',
-      title: 'Sword of Honour',
+      name: 'Sword of Honour',
       isbn: '0-553-21311-3',
       price: 12.99,
       old_price: 15,
@@ -35,13 +34,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '003',
+      id: 3,
       img: 'https://i2.rozetka.ua/goods/10642517/copy_popurri_9789851535169_5c51a3516de6f_images_10642517612.jpg',
-      category: 'Бізнес література',
-      cat_id: '003',
+      cat_name: 'Бізнес література',
+      cat_id: 3,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Herman Melville',
-      title: 'Moby Dick',
+      name: 'Moby Dick',
       isbn: '0-553-21311-3',
       price: 8.99,
       old_price: 15,
@@ -49,13 +48,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '004',
+      id: 4,
       img: 'https://i1.rozetka.ua/goods/10932453/42335872_images_10932453573.jpg',
-      category: 'Книги для батьків',
-      cat_id: '004',
+      cat_name: 'Книги для батьків',
+      cat_id: 4,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'J. R. R. Tolkien',
-      title: 'The Lord of the Rings',
+      name: 'The Lord of the Rings',
       isbn: '0-395-19395-8',
       price: 22.99,
       old_price: 35,
@@ -63,13 +62,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '001',
+      id: 5,
       img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
-      category: 'Дитячі книги',
-      cat_id: '001',
+      cat_name: 'Дитячі книги',
+      cat_id: 1,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Nigel Rees',
-      title: 'Javascript для дітей - Морґан Нік',
+      name: 'Javascript для дітей - Морґан Нік',
       isbn: '0-553-21311-3',
       price: 8.95,
       old_price: 15,
@@ -77,13 +76,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '002',
+      id: 6,
       img: 'https://i1.rozetka.ua/goods/12100714/59451100_images_12100714656.jpg',
-      category: 'Художня література',
-      cat_id: '002',
+      cat_name: 'Художня література',
+      cat_id: 2,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Evelyn Waugh',
-      title: 'Sword of Honour',
+      name: 'Sword of Honour',
       isbn: '0-553-21311-3',
       price: 12.99,
       old_price: 15,
@@ -91,13 +90,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '003',
+      id: 7,
       img: 'https://i2.rozetka.ua/goods/10642517/copy_popurri_9789851535169_5c51a3516de6f_images_10642517612.jpg',
-      category: 'Бізнес література',
-      cat_id: '003',
+      cat_name: 'Бізнес література',
+      cat_id: 3,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Herman Melville',
-      title: 'Moby Dick',
+      name: 'Moby Dick',
       isbn: '0-553-21311-3',
       price: 8.99,
       old_price: 15,
@@ -105,13 +104,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '004',
+      id: 8,
       img: 'https://i1.rozetka.ua/goods/10932453/42335872_images_10932453573.jpg',
-      category: 'Книги для батьків',
-      cat_id: '004',
+      cat_name: 'Книги для батьків',
+      cat_id: 4,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'J. R. R. Tolkien',
-      title: 'The Lord of the Rings',
+      name: 'The Lord of the Rings',
       isbn: '0-395-19395-8',
       price: 22.99,
       old_price: 35,
@@ -119,13 +118,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '001',
+      id: 9,
       img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
-      category: 'Дитячі книги',
-      cat_id: '001',
+      cat_name: 'Дитячі книги',
+      cat_id: 1,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Nigel Rees',
-      title: 'Javascript для дітей - Морґан Нік',
+      name: 'Javascript для дітей - Морґан Нік',
       isbn: '0-553-21311-3',
       price: 8.95,
       old_price: 15,
@@ -133,13 +132,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '002',
+      id: 10,
       img: 'https://i1.rozetka.ua/goods/12100714/59451100_images_12100714656.jpg',
-      category: 'Художня література',
-      cat_id: '002',
+      cat_name: 'Художня література',
+      cat_id: 2,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Evelyn Waugh',
-      title: 'Sword of Honour',
+      name: 'Sword of Honour',
       isbn: '0-553-21311-3',
       price: 12.99,
       old_price: 15,
@@ -147,13 +146,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '003',
+      id: 11,
       img: 'https://i2.rozetka.ua/goods/10642517/copy_popurri_9789851535169_5c51a3516de6f_images_10642517612.jpg',
-      category: 'Бізнес література',
-      cat_id: '003',
+      cat_name: 'Бізнес література',
+      cat_id: 3,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Herman Melville',
-      title: 'Moby Dick',
+      name: 'Moby Dick',
       isbn: '0-553-21311-3',
       price: 8.99,
       old_price: 15,
@@ -161,13 +160,13 @@ export class DataService {
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
     },
     {
-      id: '004',
+      id: 12,
       img: 'https://i1.rozetka.ua/goods/10932453/42335872_images_10932453573.jpg',
-      category: 'Книги для батьків',
-      cat_id: '004',
+      cat_name: 'Книги для батьків',
+      cat_id: 4,
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'J. R. R. Tolkien',
-      title: 'The Lord of the Rings',
+      name: 'The Lord of the Rings',
       isbn: '0-395-19395-8',
       price: 22.99,
       old_price: 35,
@@ -199,7 +198,3 @@ export class DataService {
 
   constructor() { }
 }
-
-
-
-

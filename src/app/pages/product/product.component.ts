@@ -8,11 +8,11 @@ import {Component, OnInit} from '@angular/core';
 export class ProductComponent implements OnInit {
     product = {
         id: '001',
+        name: 'Javascript для дітей - Морґан Нік',
         img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
-        category: 'Дитячі книги',
+        cat_name: 'Дитячі книги',
         cat_id: '001',
         author: 'Nigel Rees',
-        title: 'Javascript для дітей - Морґан Нік',
         isbn: '0-553-21311-3',
         price: 8.95,
         old_price: 15,
