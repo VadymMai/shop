@@ -1,10 +1,8 @@
-const mongo = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
-
 const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/mongoose', {useNewUrlParser: true});
 const Schema = mongoose.Schema;
 
-let product = new Schema({
+const productSchema = new Schema({
     id: {type: Number, unique: true},
     img: String,
     cat_name: String,
@@ -17,20 +15,12 @@ let product = new Schema({
     old_price: Number,
     description: String,
     additional: String
-},{
-    collection: 'product'
 });
 
-mongo.connect(url,{ useNewUrlParser: true }, (err, client) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-    const db = client.db('data');
-    const products = db.collection('products');
-    const customers = db.collection('customers');
+const Product = mongoose.model('products', productSchema);
 
-    let product_new = new product({
+const product = new Product(
+    {
         id: 1,
         img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
         cat_name: 'Дитячі книги',
@@ -43,35 +33,12 @@ mongo.connect(url,{ useNewUrlParser: true }, (err, client) => {
         old_price: 15,
         description: '«JavaScript для детей» — веселое пособие, вступление к основам программирования, с которым вы шаг за шагом овладеете работой со строками, массивами и циклами, инструментами DOM и jQuery и элементом canvas для рисования графики. Вы сможете писать и модифицировать HTML-элементы для создания динамических веб-страниц и напишите классные онлайн игры «Найди спрятанный клад», «Виселица» и «Змейка».',
         additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
-    });
+    }
+);
 
-    products.insertOne(product_new, (err, result) => {
-        console.log('product added');
-    });
+product.save().then(() => console.log(product.cat_name));
 
-    let myobj = [
-        { name: 'John', address: 'Highway 71'},
-        { name: 'Peter', address: 'Lowstreet 4'},
-        { name: 'Amy', address: 'Apple st 652'},
-        { name: 'Hannah', address: 'Mountain 21'},
-        { name: 'Michael', address: 'Valley 345'},
-        { name: 'Sandy', address: 'Ocean blvd 2'},
-        { name: 'Betty', address: 'Green Grass 1'},
-        { name: 'Richard', address: 'Sky st 331'},
-        { name: 'Susan', address: 'One way 98'},
-        { name: 'Vicky', address: 'Yellow Garden 2'},
-        { name: 'Ben', address: 'Park Lane 38'},
-        { name: 'William', address: 'Central st 954'},
-        { name: 'Chuck', address: 'Main Road 989'},
-        { name: 'Viola', address: 'Sideway 1633'}
-    ];
-
-    customers.insertMany(myobj, (err, result) => {
-        console.log('add customers');
-    });
-
-    customers.find().toArray((err, items) => {
-        console.log(items);
-    });
-    client.close();
+Product.find(function (err, products) {
+    if (err) return console.error(err);
+    console.log(products);
 });
