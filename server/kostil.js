@@ -9,9 +9,26 @@ mongo.connect(url,{useNewUrlParser: true}, (err, client) => {
     const db = client.db('data');
     const products = db.collection('products');
 
+    products.insertOne(
+        {
+            _id: "id",
+            seq: 0
+        }
+    );
+
+    function getNextSequence() {
+        return products.findOneAndUpdate(
+            { "_id": "id" },
+            { $inc: { "seq": 1 } },
+            {returnNewDocument:true}
+        );
+
+        //return ret.seq;
+    }
+
     class Product {
-        constructor(name, img, cat_name, cat_id, cat_img, author, isbn, price, old_price, description, additional,id) {
-            this._id = id;
+        constructor(name, img, cat_name, cat_id, cat_img, author, isbn, price, old_price, description, additional, id) {
+            this.id = id;
             this.name = name;
             this.img = img;
             this.cat_name = cat_name;
@@ -26,18 +43,7 @@ mongo.connect(url,{useNewUrlParser: true}, (err, client) => {
         }
     }
 
-
-
-    //console.log();
-    //products.find().sort({"_id": -1}).limit(1).count();
-    //$array = iterator_to_array($cursor);
-    let cursor = products.find().sort({"_id": -1}).limit(1);
-    cursor.toArray().then(arr => {
-        let id=1;
-        if(arr.length > 0) {
-           id = arr[0]._id+1;
-        }
-
+    getNextSequence().then((e)=>{
         const product = new Product(
             'Javascript для дітей - Морґан Нік',
             'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
@@ -50,15 +56,19 @@ mongo.connect(url,{useNewUrlParser: true}, (err, client) => {
             15,
             '«JavaScript для детей» — веселое пособие, вступление к основам программирования, с которым вы шаг за шагом овладеете работой со строками, массивами и циклами, инструментами DOM и jQuery и элементом canvas для рисования графики. Вы сможете писать и модифицировать HTML-элементы для создания динамических веб-страниц и напишите классные онлайн игры «Найди спрятанный клад», «Виселица» и «Змейка».',
             'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!',
-            id
-
+            e.value.seq
         );
 
         products.insertOne(product, (err, result) => {
             console.log('product added');
         });
         client.close();
-
     });
+
+
+    /*    products.find().toArray((err, items) => {
+            console.log(items);
+        });*/
+
 
 });

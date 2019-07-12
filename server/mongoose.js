@@ -3,13 +3,13 @@ mongoose.connect('mongodb://localhost:27017/mongoose', {useNewUrlParser: true});
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-    id: {type: Number, unique: true},
+    _id: {type: Number, unique: true},
+    name: String,
     img: String,
     cat_name: String,
     cat_id: {type: Number, unique: true},
     cat_img: String,
     author: String,
-    name: String,
     isbn: String,
     price: Number,
     old_price: Number,
@@ -21,13 +21,13 @@ const Product = mongoose.model('products', productSchema);
 
 const product = new Product(
     {
-        id: 1,
+        _id: 1,
+        name: 'Javascript для дітей - Морґан Нік',
         img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
         cat_name: 'Дитячі книги',
         cat_id: 1,
         cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
         author: 'Nigel Rees',
-        name: 'Javascript для дітей - Морґан Нік',
         isbn: '0-553-21311-3',
         price: 8.95,
         old_price: 15,
