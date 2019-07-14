@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'categories/:id', component: CategoryComponent },
-  { path: 'categories/:id/:id', component: ProductComponent }
+  { path: 'categories/:id/:id', component: ProductComponent },
+  { path: 'admin/products', component: AdminProductsComponent },
+  { path: 'admin/users', component: AdminUsersComponent },
 ];
 
 @NgModule({

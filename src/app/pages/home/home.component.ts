@@ -9,7 +9,7 @@ import { DataService } from '../../services/data.service';
 })
 export class HomeComponent implements OnInit {
 
-  categories: object[] = this.dataService.getСategories();
+  categories: object[] = this.dataService.getCategories();
   products: object[] = this.dataService.getProducts();
 
   constructor(private dataService: DataService) {}

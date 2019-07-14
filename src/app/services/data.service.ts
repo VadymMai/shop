@@ -1,9 +1,30 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+export interface Product {
+  _id: number;
+  name: string;
+  img: string;
+  cat_name: string;
+  cat_id: number;
+  cat_img: string;
+  author: string;
+  isbn: string;
+  price: number;
+  old_price: number;
+  description: string;
+  additional: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  public products1: Product[] = [];
+
   private data: any[] = [
     {
       id: 1,
@@ -175,11 +196,13 @@ export class DataService {
     }
   ];
 
+  constructor(private http: HttpClient) {}
+
   getProducts(): object[] {
     return this.data;
   }
 
-  getСategories(): object[] {
+  getCategories(): object[] {
     const filteredList: string[] = [];
     const categories: object[] = this.data.filter((item) => {
       if (filteredList.includes(item.cat_id)) {
@@ -192,9 +215,13 @@ export class DataService {
     return categories;
   }
 
-  addProduct(name: object) {
-    this.data.push(name);
+  fetchProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>('https://github.com/VadymMai/db/blob/master/db.json')// http://localhost:3000/products,products.json
+      .pipe(tap(products => this.products1 = products));
   }
 
-  constructor() { }
+  test() {
+    console.log(this.products1);
+  }
+
 }

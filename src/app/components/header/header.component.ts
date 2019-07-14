@@ -8,7 +8,7 @@ import { DataService } from '../../services/data.service';
 })
 export class HeaderComponent implements OnInit {
 
-  categories: object[] = this.dataService.getСategories();
+  categories: object[] = this.dataService.getCategories();
 
   constructor(private dataService: DataService) {}
 
