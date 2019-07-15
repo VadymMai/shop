@@ -1,4 +1,4 @@
-<div class="card" routerLink="/categories/{{product.cat_id}}/{{product.id}}">
+<div class="card" routerLink="/categories/{{product.cat_id}}/{{product._id}}">
     <div class="view overlay">
         <img src="{{product.img}}" class="card-img-top product-img" alt="{{product.title}}">
         <a>
@@ -15,7 +15,7 @@
             <h5>{{product.author}}</h5>
         </a>
         <h4 class="font-weight-bold pink-text">
-            <strong>{{product.price}}$</strong>
+            <strong>{{product.price}}грн</strong>
         </h4>
         <button class="btn btn-default btn-md my-0 p" type="submit">Add to cart
             <i class="fas fa-shopping-cart ml-1"></i>
