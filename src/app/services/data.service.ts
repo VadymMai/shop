@@ -218,12 +218,15 @@ export class DataService {
   }
 
   fetchProducts() {
-    this.http.get<Product[]>('http://localhost:3000/products').subscribe((products: Product[]) => {
-      this.products1 = products;
-      console.log(products);
-    }, (err) => {
-      console.log('Error', err);
-    });
+    this.http.get<Product[]>('http://localhost:3000/products').subscribe(
+      (products: Product[]) => {
+        this.products1 = products;
+        console.log(products);
+      },
+      (err) => {
+        console.log('Error', err);
+      }
+    );
   }
 
   /*TESTfetchProducts(): Observable<Product[]> {
@@ -239,13 +242,12 @@ export class DataService {
   }*/
 
   addProduct(product: Product) {
-    console.log(product);
     return this.http.post<Product>('http://localhost:3000/products', product).subscribe(
-        (data: Product) => {
-          this.addedProduct = data;
-          console.log(data);
-        },
-        err => console.log(err)
+      (data: Product) => {
+        this.addedProduct = data;
+        console.log(data);
+      },
+      err => console.log(err)
     );
   }
 

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
+
 export class AdminProductsComponent implements OnInit {
 
   id = 0;
@@ -17,12 +18,10 @@ export class AdminProductsComponent implements OnInit {
   catImg = '';
   author = '';
   isbn = '';
-  price = 0;
-  oldPrice = 0;
+  price: number;
+  oldPrice: number;
   description = '';
   additional = '';
-
-  products: object[] = [];
 
   constructor(private dataService: DataService) {}
 
