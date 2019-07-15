@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 export interface Product {
   _id: number;
@@ -22,8 +22,6 @@ export interface Product {
   providedIn: 'root'
 })
 export class DataService {
-
-  public products1: Product[] = [];
 
   private data: any[] = [
     {
@@ -196,6 +194,10 @@ export class DataService {
     }
   ];
 
+  public products1: Product[] = [];
+
+  public addedProduct: Product;
+
   constructor(private http: HttpClient) {}
 
   getProducts(): object[] {
@@ -215,13 +217,37 @@ export class DataService {
     return categories;
   }
 
-  fetchProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://github.com/VadymMai/db/blob/master/db.json')// http://localhost:3000/products,products.json
-      .pipe(tap(products => this.products1 = products));
+  fetchProducts() {
+    this.http.get<Product[]>('http://localhost:3000/products').subscribe((products: Product[]) => {
+      this.products1 = products;
+      console.log(products);
+    }, (err) => {
+      console.log('Error', err);
+    });
   }
 
-  test() {
-    console.log(this.products1);
+  /*TESTfetchProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:3000/products').pipe(
+      tap((products: Product[]) => {
+        this.products1 = products;
+      }),
+      catchError(err => {
+        console.log(err.message);
+        return throwError(err);
+      })
+    );
+  }*/
+
+  addProduct(product: Product) {
+    console.log(product);
+    return this.http.post<Product>('http://localhost:3000/products', product).subscribe(
+        (data: Product) => {
+          this.addedProduct = data;
+          console.log(data);
+        },
+        err => console.log(err)
+    );
   }
+
 
 }

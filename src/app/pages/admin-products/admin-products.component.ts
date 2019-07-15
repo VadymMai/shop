@@ -24,8 +24,6 @@ export class AdminProductsComponent implements OnInit {
 
   products: object[] = [];
 
-  /*products1: Observable<Product[]> = [];*/
-
   constructor(private dataService: DataService) {}
 
   addProduct() {
@@ -43,11 +41,12 @@ export class AdminProductsComponent implements OnInit {
       description: this.description,
       additional: this.additional
     };
+    this.dataService.addProduct(product);
   }
 
   ngOnInit() {
-    this.dataService.test();
     this.dataService.fetchProducts();
+    // this.dataService.TESTfetchProducts().subscribe();
   }
 
 }
