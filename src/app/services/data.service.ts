@@ -194,15 +194,11 @@ export class DataService {
     }
   ];
 
-  public products1: Product[] = [];
+  public products: Product[] = [];
 
   public addedProduct: Product;
 
   constructor(private http: HttpClient) {}
-
-  getProducts(): object[] {
-    return this.data;
-  }
 
   getCategories(): object[] {
     const filteredList: string[] = [];
@@ -217,22 +213,27 @@ export class DataService {
     return categories;
   }
 
-  fetchProducts() {
-    this.http.get<Product[]>('http://localhost:3000/products').subscribe(
+  getProducts() {
+    this.http.get<Product[]>('http://localhost:3000/productsq').subscribe(
       (products: Product[]) => {
-        this.products1 = products;
+        this.products = products;
         console.log(products);
       },
       (err) => {
         console.log('Error', err);
+        this.products = this.data;
       }
     );
   }
 
-  /*TESTfetchProducts(): Observable<Product[]> {
+  /*getProducts(): object[] {
+    return this.data;
+  }*/
+
+  /*TESTgetProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:3000/products').pipe(
       tap((products: Product[]) => {
-        this.products1 = products;
+        this.products = products;
       }),
       catchError(err => {
         console.log(err.message);

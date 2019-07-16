@@ -44,8 +44,8 @@ export class AdminProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.fetchProducts();
-    // this.dataService.TESTfetchProducts().subscribe();
+    this.dataService.getProducts();
+    // this.dataService.TESTgetProducts().subscribe();
   }
 
 }

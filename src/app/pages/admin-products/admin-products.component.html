@@ -74,7 +74,7 @@
         </div>
     </div>
 </div>
-<button (click)="dataService.fetchProducts()" type="button" class="btn btn-danger btn-block z-depth-2 waves-effect waves-light">Запит</button>
-<p class="col-md-6 col-lg-4 mb-4" *ngFor="let item of dataService.products1">{{item.name}}</p>
+<button (click)="dataService.getProducts()" type="button" class="btn btn-danger btn-block z-depth-2 waves-effect waves-light">Запит</button>
+<p class="col-md-6 col-lg-4 mb-4" *ngFor="let item of dataService.products">{{item.name}}</p>
 
 
