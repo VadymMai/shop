@@ -33,7 +33,7 @@ export class DataService {
       cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
       author: 'Морґан Нік',
       isbn: '978-617-679-479-0',
-      price: 220 ,
+      price: 221 ,
       old_price: 320,
       description: '«JavaScript для детей» — веселое пособие, вступление к основам программирования, с которым вы шаг за шагом овладеете работой со строками, массивами и циклами, инструментами DOM и jQuery и элементом canvas для рисования графики. Вы сможете писать и модифицировать HTML-элементы для создания динамических веб-страниц и напишите классные онлайн игры «Найди спрятанный клад», «Виселица» и «Змейка».',
       additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
@@ -214,7 +214,7 @@ export class DataService {
   }
 
   getProducts() {
-    this.http.get<Product[]>('http://localhost:3000/productsq').subscribe(
+    this.http.get<Product[]>('http://localhost:3000/api/BookShop/GetAllBooks').subscribe(
       (products: Product[]) => {
         this.products = products;
         console.log(products);
@@ -231,7 +231,7 @@ export class DataService {
   }*/
 
   /*TESTgetProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:3000/products').pipe(
+    return this.http.get<Product[]>('http://localhost:3000/api/BookShop/GetAllBooks').pipe(
       tap((products: Product[]) => {
         this.products = products;
       }),
@@ -243,7 +243,7 @@ export class DataService {
   }*/
 
   addProduct(product: Product) {
-    return this.http.post<Product>('http://localhost:3000/products', product).subscribe(
+    return this.http.post<Product>('http://localhost:3000/api/BookShop/CreateNewBook', product).subscribe(
       (data: Product) => {
         this.addedProduct = data;
         console.log(data);

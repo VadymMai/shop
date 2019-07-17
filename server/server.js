@@ -2,22 +2,22 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
-const mongoClient = new MongoClient("mongodb://localhost:27017/", {useNewUrlParser: true});;
+const mongoClient = new MongoClient("mongodb://localhost:27017/", {useNewUrlParser: true});
 const jsonParser = express.json();
 let clientDb, db, products;
 
-mongoClient.connect(function(err, client){
+mongoClient.connect((err, client) => {
     if(err) return console.log(err);
     clientDb = client;
     db = client.db('data');
     products = db.collection('products');
     app.listen(3000, (err) => {
-        if (err) return console.log('something bad happened', err)
+        if (err) return console.log('something bad happened', err);
         console.log('Сервер ожидает подключения...');
     });
 });
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -27,15 +27,15 @@ app.get('/', (request, response) => {
     response.send('Hello from Express!')
 });
 
-app.get('/products', function(req, res){
-    products.find({}).toArray(function(err, products){
+app.get('/api/BookShop/GetAllBooks', (req, res) => {
+    products.find({}).toArray((err, products) =>{
         if(err) return console.log(err);
         console.log(products);
         res.send(products);
     });
 });
 
-app.post('/products', jsonParser, function (req, res) {
+app.post('/api/BookShop/CreateNewBook', jsonParser, (req, res) => {
     if(!req.body) {
         console.log('Помилка отриманих даних');
         return res.sendStatus(400);
@@ -61,7 +61,7 @@ app.post('/products', jsonParser, function (req, res) {
     });
 });
 
-app.get('/productinsert', function(req, res){
+app.get('/productinsert', (req, res) => {
     let cursor = products.find().sort({"_id": -1}).limit(1);
     cursor.toArray().then(arr => {
         let _id=1;
