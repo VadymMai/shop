@@ -23,7 +23,7 @@ export interface Product {
 })
 export class DataService {
 
-  private data: any[] = [
+  private data: Product[] = [
     {
       _id: 1,
       name: 'Javascript для дітей',
@@ -201,7 +201,7 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getCategories(): object[] {
-    const filteredList: string[] = [];
+    const filteredList: number[] = [];
     const categories: object[] = this.data.filter((item) => {
       if (filteredList.includes(item.cat_id)) {
         return false;
