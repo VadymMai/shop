@@ -8,10 +8,12 @@ import { DataService } from '../../services/data.service';
 })
 export class HeaderComponent implements OnInit {
 
-  categories: object[] = this.dataService.getCategories();
-
   constructor(private dataService: DataService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dataService.getProducts().subscribe(() => {
+      this.dataService.getCategories();
+    });
+  }
 
 }

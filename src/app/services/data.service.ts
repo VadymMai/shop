@@ -196,13 +196,15 @@ export class DataService {
 
   public products: Product[] = [];
 
+  public categories: object[] = [];
+
   public addedProduct: Product;
 
   constructor(private http: HttpClient) {}
 
-  getCategories(): object[] {
+  getCategories() {
     const filteredList: number[] = [];
-    const categories: object[] = this.data.filter((item) => {
+    const categories: object[] = this.products.filter((item) => {
       if (filteredList.includes(item.cat_id)) {
         return false;
       } else {
@@ -210,37 +212,35 @@ export class DataService {
         return true;
       }
     });
-    return categories;
+    this.categories = categories;
   }
 
-  getProducts() {
+  /*getProducts() {
     this.http.get<Product[]>('http://localhost:3000/api/BookShop/GetAllBooks').subscribe(
       (products: Product[]) => {
         this.products = products;
         console.log(products);
       },
       (err) => {
-        console.log('Error', err);
         this.products = this.data;
+        console.log('Error: ', err);
       }
     );
-  }
-
-  /*getProducts(): object[] {
-    return this.data;
   }*/
 
-  /*TESTgetProducts(): Observable<Product[]> {
+  getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:3000/api/BookShop/GetAllBooks').pipe(
       tap((products: Product[]) => {
+        console.log(products);
         this.products = products;
       }),
       catchError(err => {
         console.log(err.message);
+        this.products = this.data;
         return throwError(err);
       })
     );
-  }*/
+  }
 
   addProduct(product: Product) {
     return this.http.post<Product>('http://localhost:3000/api/BookShop/CreateNewBook', product).subscribe(

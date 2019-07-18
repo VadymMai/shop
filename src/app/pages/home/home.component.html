@@ -15,7 +15,7 @@
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" *ngFor="let item of categories">
+            <li class="nav-item" *ngFor="let item of dataService.categories">
                 <a class="nav-link" routerLink="/categories/{{item.cat_id}}">{{item.cat_name}}</a>
             </li>
         </ul>

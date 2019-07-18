@@ -13,7 +13,7 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.getProducts();
+    this.dataService.getProducts().subscribe();
   }
 
 }

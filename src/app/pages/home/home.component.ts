@@ -9,12 +9,13 @@ import { DataService } from '../../services/data.service';
 })
 export class HomeComponent implements OnInit {
 
-  categories: object[] = this.dataService.getCategories();
-
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getProducts();
+    this.dataService.getProducts().subscribe(() => {
+      this.dataService.getCategories();
+    });
+    // this.dataService.getProducts();
   }
 
 }
