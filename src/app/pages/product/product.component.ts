@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+
     product = {
         id: '001',
         name: 'Javascript для дітей - Морґан Нік',
