@@ -233,6 +233,7 @@ export class DataService {
       tap((products: Product[]) => {
         console.log(products);
         this.products = products;
+        getCategories();
       }),
       catchError(err => {
         console.log(err.message);
