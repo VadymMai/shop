@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ComponentsModule } from '../components/components.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -33,11 +33,12 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     AdminProductsComponent,
     AdminUsersComponent
   ],
-    imports: [
-        CommonModule,
-        PagesRoutingModule,
-        ComponentsModule,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    ComponentsModule,
+    FormsModule,
+    ReactiveFormsModule
+  ]
 })
 export class PagesModule { }

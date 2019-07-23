@@ -3,3 +3,15 @@
         min-width: 200px;
     }
 }
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+    border:solid red 2px;
+}
+
+input.ng-touched.ng-valid,
+textarea.ng-touched.ng-valid,
+select.ng-touched.ng-valid {
+    border:solid green 2px;
+}
