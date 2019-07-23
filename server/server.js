@@ -35,6 +35,49 @@ app.get('/api/BookShop/GetAllBooks', (req, res) => {
     });
 });
 
+app.get('/api/BookShop/GetAllCategories', (req, res) => {
+    products.find({}).toArray((err, products) =>{
+        if(err) return console.log(err);
+        const filteredList = [];
+        const categories = products.reduce((result, item) => {
+            if (!filteredList.includes(item.cat_id)) {
+                filteredList.push(item.cat_id);
+                result.push({
+                    cat_id: item.cat_id,
+                    cat_name: item.cat_name,
+                    cat_img: item.cat_img
+                });
+            }
+            return result;
+        }, []);
+        console.log(categories);
+        res.send(categories);
+    });
+});
+
+/*app.get('/api/BookShop/GetAllCategories', (req, res) => {
+    products.find({}).toArray((err, products) =>{
+        if(err) return console.log(err);
+        const filteredList = [];
+        const categories = products.filter((item) => {
+            if (filteredList.includes(item.cat_id)) {
+                return false;
+            } else {
+                filteredList.push(item.cat_id);
+                return true;
+            }
+        }).map(item => {
+            return {
+                cat_id: item.cat_id,
+                cat_name: item.cat_name,
+                cat_img: item.cat_img
+            };
+        });
+        console.log(categories);
+        res.send(categories);
+    });
+});*/
+
 app.post('/api/BookShop/CreateNewBook', jsonParser, (req, res) => {
     if(!req.body) {
         console.log('Помилка отриманих даних');

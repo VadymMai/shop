@@ -11,10 +11,8 @@ export class HeaderComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getProducts().subscribe(() => {
-      //this.dataService.getCategories();
-      this.dataService.categories;
-    });
+    this.dataService.getProducts().subscribe();
+    this.dataService.getCategories().subscribe();
   }
 
 }

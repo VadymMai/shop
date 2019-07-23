@@ -18,12 +18,20 @@ export interface Product {
   additional: string;
 }
 
+export interface Category {
+  cat_name: string;
+  cat_id: number;
+  cat_img: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private data: Product[] = [
+  public products: Product[] = [];
+
+  private localProducts: Product[] = [
     {
       _id: 1,
       name: 'Javascript для дітей',
@@ -194,57 +202,85 @@ export class DataService {
     }
   ];
 
-  public products: Product[] = [];
+  public categories: Category[] = [];
 
-  public categories: object[] = [];
+  private localCategories: Category[] = [
+    {
+      cat_id: 1,
+      cat_name: 'Дитячі книги',
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+    },
+    {
+      cat_id: 2,
+      cat_name: 'Художня література',
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+    },
+    {
+      cat_id: 3,
+      cat_name: 'Бізнес література',
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+    },
+    {
+      cat_id: 4,
+      cat_name: 'Книги для батьків',
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+    }
+    ];
 
   public addedProduct: Product;
 
+  public apiUrl = 'http://localhost:3000/api/';
+  // public apiUrl = 'http://185.227.108.238:3001/api/';
+
   constructor(private http: HttpClient) {}
 
-  getCategories() {
-    const filteredList: number[] = [];
-    const categories: object[] = this.products.filter((item) => {
-      if (filteredList.includes(item.cat_id)) {
-        return false;
-      } else {
-        filteredList.push(item.cat_id);
-        return true;
-      }
-    });
-    this.categories = categories;
+  getCategories(): Observable<Category[]> {
+    if (!this.categories.length) {
+      return this.http.get<Category[]>(this.apiUrl + 'BookShop/GetAllCategories').pipe(
+        tap((categories: Category[]) => {
+          console.log('categories: ', categories);
+          this.categories = categories;
+        }),
+        catchError(err => {
+          console.log(err.message);
+          this.categories = this.localCategories;
+          return throwError(err);
+        })
+      );
+    } else {
+      console.log('Список категорій був завантажений раніше.');
+    }
   }
 
   /*getProducts() {
     this.http.get<Product[]>('http://localhost:3000/api/BookShop/GetAllBooks').subscribe(
       (products: Product[]) => {
         this.products = products;
-        console.log(products);
+        console.log('products: ', products);
       },
       (err) => {
-        this.products = this.data;
+        this.products = this.localProducts;
         console.log('Error: ', err);
       }
     );
   }*/
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:3000/api/BookShop/GetAllBooks').pipe(
+    return this.http.get<Product[]>(this.apiUrl + 'BookShop/GetAllBooks').pipe(
       tap((products: Product[]) => {
-        console.log(products);
+        console.log('products: ', products);
         this.products = products;
-        getCategories();
       }),
       catchError(err => {
         console.log(err.message);
-        this.products = this.data;
+        this.products = this.localProducts;
         return throwError(err);
       })
     );
   }
 
   addProduct(product: Product) {
-    return this.http.post<Product>('http://localhost:3000/api/BookShop/CreateNewBook', product).subscribe(
+    return this.http.post<Product>(this.apiUrl + 'BookShop/CreateNewBook', product).subscribe(
       (data: Product) => {
         this.addedProduct = data;
         console.log(data);
