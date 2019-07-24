@@ -10,7 +10,7 @@ mongoClient.connect((err, client) => {
     if(err) return console.log(err);
     clientDb = client;
     db = client.db('data');
-    products = db.collection('products');
+    products = db.collection('productsqqq');
     app.listen(3000, (err) => {
         if (err) return console.log('something bad happened', err);
         console.log('Сервер ожидает подключения...');
@@ -28,12 +28,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/BookShop/GetBook/:id', (req, res) => {
-    /*if(!req.body) {
-        console.log('Помилка отриманих даних');
-        return res.sendStatus(400);
-    }*/
     console.log(req.params.id);
-
     products.findOne({_id: +req.params.id}, (err, product) => {
         if(err) return console.log(err);
         console.log(product);
@@ -46,6 +41,33 @@ app.get('/api/BookShop/GetAllBooks', (req, res) => {
         if(err) return console.log(err);
         console.log(products);
         res.send(products);
+    });
+});
+
+app.get('/api/BookShop/DeleteBook/:id', (req, res) => {
+    console.log(req.params.id);
+    products.deleteOne({_id: +req.params.id}, (err, obj) => {
+        if(err) return console.log(err);
+        if (obj.result.n) {
+            console.log('Товар видалено успішно');
+            res.send('Товар видалено успішно');
+        } else {
+            console.log('Такого товару не знайдено');
+            res.send('Такого товару не знайдено');
+        }
+    });
+});
+
+app.get('/api/BookShop/DeleteAllBooks', (req, res) => {
+    products.deleteMany({}, (err, obj) => {
+        if(err) return console.log(err);
+        if (obj.result.n) {
+            console.log('Всі товари видалено успішно');
+            res.send('Всі товари видалено успішно');
+        } else {
+            console.log('Товарів не знайдено');
+            res.send('Товарів не знайдено');
+        }
     });
 });
 
