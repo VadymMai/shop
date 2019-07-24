@@ -29,8 +29,23 @@ export interface Category {
 })
 export class DataService {
 
-  public products: Product[] = [];
+  public product: Product;
+  private localProduct: Product = {
+    _id: 1,
+    name: 'Javascript для дітей',
+    img: 'https://i1.rozetka.ua/goods/4116170/vydavnytstvo_staroho_leva_9786176794790_images_4116170096.jpg',
+    cat_name: 'Дитячі книги',
+    cat_id: 1,
+    cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
+    author: 'Морґан Нік',
+    isbn: '978-617-679-479-0',
+    price: 221 ,
+    old_price: 320,
+    description: '«JavaScript для детей» — веселое пособие, вступление к основам программирования, с которым вы шаг за шагом овладеете работой со строками, массивами и циклами, инструментами DOM и jQuery и элементом canvas для рисования графики. Вы сможете писать и модифицировать HTML-элементы для создания динамических веб-страниц и напишите классные онлайн игры «Найди спрятанный клад», «Виселица» и «Змейка».',
+    additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
+  };
 
+  public products: Product[] = [];
   private localProducts: Product[] = [
     {
       _id: 1,
@@ -203,7 +218,6 @@ export class DataService {
   ];
 
   public categories: Category[] = [];
-
   private localCategories: Category[] = [
     {
       cat_id: 1,
@@ -274,6 +288,32 @@ export class DataService {
       catchError(err => {
         console.log(err.message);
         this.products = this.localProducts;
+        return throwError(err);
+      })
+    );
+  }
+
+  getProduct(id: number) {
+    return this.http.get<Product>(this.apiUrl + 'BookShop/GetBook/' + id).pipe(
+      tap((product: Product) => {
+        console.log('product: ', product);
+        this.product = product;
+      }),
+      catchError(err => {
+        console.log(err.message);
+        this.product = this.localProduct;
+        return throwError(err);
+      })
+    );
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete<Product>(this.apiUrl + 'BookShop/DeleteBook/' + id).pipe(
+      tap((product: Product) => {
+        console.log('Deleted product: ', product);
+      }),
+      catchError(err => {
+        console.log(err.message);
         return throwError(err);
       })
     );

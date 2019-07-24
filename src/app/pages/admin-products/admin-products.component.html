@@ -20,6 +20,7 @@
                 <span class="input-group-text">Категорія</span>
             </div>
             <select formControlName="catId" (ngModelChange)="newCategoryCheck()" name="cat_name" class="browser-default custom-select" required>
+                <option disabled selected value style="display:none;"></option>
                 <option *ngFor="let item of dataService.categories" value="{{item.cat_id}}">{{item.cat_name}}</option>
                 <option value="0">Створити нову категорію</option>
             </select>
@@ -79,7 +80,7 @@
             <textarea formControlName="additional" name="additional" class="form-control" required></textarea>
         </div>
         <div class="input-group mb-3">
-            <button [disabled]="addProductForm.invalid" (click)="test()" class="btn btn-danger btn-block z-depth-2 waves-effect waves-light">Додати товар</button>
+            <button [disabled]="addProductForm.invalid" class="btn btn-default btn-block z-depth-2 waves-effect waves-light">Додати товар</button>
         </div>
     </form>
 </div>

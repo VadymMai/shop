@@ -11,20 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class AdminProductsComponent implements OnInit {
 
-  addProductForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    img: new FormControl('', Validators.required),
-    catName: new FormControl('', Validators.required),
-    catId: new FormControl('', Validators.required),
-    catImg: new FormControl('', Validators.required),
-    author: new FormControl('', Validators.required),
-    isbn: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
-    oldPrice: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    additional: new FormControl('', Validators.required)
-  });
-
+  addProductForm: FormGroup;
   newCategory = false;
 
   /*id = 0;
@@ -48,7 +35,7 @@ export class AdminProductsComponent implements OnInit {
       name: this.addProductForm.value.name,
       img: this.addProductForm.value.img,
       cat_name: this.addProductForm.value.catName,
-      cat_id: this.addProductForm.value.catId,
+      cat_id: Number(this.addProductForm.value.catId),
       cat_img: this.addProductForm.value.catImg,
       author: this.addProductForm.value.author,
       isbn: this.addProductForm.value.isbn,
@@ -58,7 +45,7 @@ export class AdminProductsComponent implements OnInit {
       additional: this.addProductForm.value.additional
     };
     console.log(product);
-    // this.dataService.addProduct(product);
+    this.dataService.addProduct(product);
   }
 
   newCategoryCheck() {
@@ -71,13 +58,22 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
-  test() {
-    console.log(this.addProductForm.value.catName);
-  }
-
   ngOnInit() {
     this.dataService.getProducts().subscribe();
     this.dataService.getCategories().subscribe();
+    this.addProductForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      img: new FormControl(null, Validators.required),
+      catName: new FormControl(null, Validators.required),
+      catId: new FormControl('', Validators.required),
+      catImg: new FormControl(null, Validators.required),
+      author: new FormControl(null, Validators.required),
+      isbn: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required),
+      oldPrice: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      additional: new FormControl(null, Validators.required)
+    });
   }
 
 }

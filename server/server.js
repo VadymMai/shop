@@ -27,6 +27,20 @@ app.get('/', (request, response) => {
     response.send('Hello from Express!')
 });
 
+app.get('/api/BookShop/GetBook/:id', (req, res) => {
+    /*if(!req.body) {
+        console.log('Помилка отриманих даних');
+        return res.sendStatus(400);
+    }*/
+    console.log(req.params.id);
+
+    products.findOne({_id: +req.params.id}, (err, product) => {
+        if(err) return console.log(err);
+        console.log(product);
+        res.send(product);
+    });
+});
+
 app.get('/api/BookShop/GetAllBooks', (req, res) => {
     products.find({}).toArray((err, products) =>{
         if(err) return console.log(err);
@@ -92,6 +106,10 @@ app.post('/api/BookShop/CreateNewBook', jsonParser, (req, res) => {
 
         let product = req.body;
         product._id = _id;
+
+        if (product.cat_id == 0) {
+            product.cat_id = 0;
+        }
 
         products.insertOne(product, (err, result) => {
             if(err) {

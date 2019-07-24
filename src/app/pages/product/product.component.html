@@ -4,7 +4,7 @@
     <!--Grid column-->
     <div class="col-md-6 mb-4 text-center">
 
-        <img src="{{product.img}}" class="img-fluid" alt="">
+        <img src="{{dataService.product.img}}" class="img-fluid" alt="{{dataService.product.name}}">
 
     </div>
     <!--Grid column-->
@@ -13,14 +13,14 @@
     <div class="col-md-6 mb-4">
 
         <!--Title-->
-        <h1 class="product-title mb-3">{{product.name}}</h1>
+        <h1 class="product-title mb-3">{{dataService.product.name}}</h1>
 
         <!--Content-->
         <div>
 
             <div class="mb-3">
                 <a href="">
-                    <span class="badge purple mr-1">{{product.cat_name}}</span>
+                    <span class="badge purple mr-1">{{dataService.product.cat_name}}</span>
                 </a>
                 <a href="">
                     <span class="badge blue mr-1">New</span>
@@ -32,19 +32,19 @@
 
             <p class="lead">
               <span class="mr-1">
-                <del>${{product.old_price}}</del>
+                <del>{{dataService.product.old_price}}</del>
               </span>
-                <span>${{product.price}}</span>
+                <b>{{dataService.product.price}}грн</b>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>{{product.description}}</p>
+            <p>{{dataService.product.description}}</p>
 
             <form class="d-flex justify-content-left">
                 <!-- Default input -->
                 <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-                <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                <button class="btn btn-default btn-md my-0" type="submit">Add to cart
                     <i class="fas fa-shopping-cart ml-1"></i>
                 </button>
 
@@ -69,11 +69,11 @@
 
         <h4 class="my-4 h4">Additional information</h4>
 
-        <p>{{product.additional}}</p>
+        <p>{{dataService.product.additional}}</p>
 
-        <p><b>Категорія:</b> {{product.cat_name}}</p>
-        <p><b>Автор:</b> {{product.author}}</p>
-        <p><b>ISBN:</b> {{product.isbn}}</p>
+        <p><b>Категорія:</b> {{dataService.product.cat_name}}</p>
+        <p><b>Автор:</b> {{dataService.product.author}}</p>
+        <p><b>ISBN:</b> {{dataService.product.isbn}}</p>
 
     </div>
     <!--Grid column-->
