@@ -10,8 +10,8 @@ mongoClient.connect((err, client) => {
     if(err) return console.log(err);
     clientDb = client;
     db = client.db('data');
-    products = db.collection('productsqqq');
-    app.listen(3000, (err) => {
+    products = db.collection('products');
+    app.listen(3001, (err) => {
         if (err) return console.log('something bad happened', err);
         console.log('Сервер ожидает подключения...');
     });

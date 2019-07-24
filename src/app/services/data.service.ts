@@ -243,7 +243,7 @@ export class DataService {
 
   public addedProduct: Product;
 
-  // public apiUrl = 'http://localhost:3000/api/';
+  // public apiUrl = 'http://localhost:3001/api/';
   public apiUrl = 'http://185.227.108.238:3001/api/';
 
   constructor(private http: HttpClient) {}
