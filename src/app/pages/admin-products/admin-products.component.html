@@ -21,6 +21,7 @@
             </div>
             <select formControlName="catId" (ngModelChange)="newCategoryCheck()" name="cat_name" class="browser-default custom-select" required>
                 <option disabled selected value style="display:none;"></option>
+                <!--<option *ngFor="let item of dataService.categories" [ngValue]="item">{{item.cat_name}}</option>-->
                 <option *ngFor="let item of dataService.categories" value="{{item.cat_id}}">{{item.cat_name}}</option>
                 <option value="0">Створити нову категорію</option>
             </select>

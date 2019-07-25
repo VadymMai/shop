@@ -47,7 +47,7 @@ export class AdminProductsComponent implements OnInit {
     console.log(product);
 
     /*const qqq = {
-      _id: 4,
+      _id: 8,
       name: 'Що робити коли...',
       img: 'https://i2.rozetka.ua/goods/2969930/32598239_images_2969930215.jpg',
       cat_name: 'Книги для батьків',
@@ -68,9 +68,11 @@ export class AdminProductsComponent implements OnInit {
     if (this.addProductForm.value.catId === '0') {
       this.newCategory = true;
       this.addProductForm.get('catName').setValue('');
+      // console.log('catName: ', this.addProductForm.value.catName, ' catId: ', this.addProductForm.value.catId);
     } else {
       this.newCategory = false;
       this.addProductForm.get('catName').setValue(document.querySelector('.custom-select option:checked').innerHTML);
+      // console.log('catName: ', this.addProductForm.value.catName, ' catId: ', this.addProductForm.value.catId);
     }
   }
 
