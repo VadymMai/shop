@@ -1,5 +1,5 @@
 <div class="row">
-    <h1 class="pb-4 mb-4 mx-3 border-bottom w-100">Single category</h1>
+    <h1 class="pb-4 mb-4 mx-3 border-bottom w-100">{{dataService.products[0].cat_name}}</h1>
 </div>
 <div class="row wow fadeIn">
     <div class="col-12 col-md-3 pl-lg-0">
@@ -8,30 +8,18 @@
             <h3 class="m-0">Категорії:</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Дитячі книги
+            <li *ngFor="let item of dataService.categories" class="list-group-item d-flex justify-content-between align-items-center">
+                {{item.cat_name}}
                 <span class="badge badge-primary badge-pill">2</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Художня література
-                <span class="badge badge-primary badge-pill">5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Бізнес література
-                <span class="badge badge-primary badge-pill">20</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Книги для батьків
-                <span class="badge badge-primary badge-pill">2</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <!--<li class="list-group-item d-flex justify-content-between align-items-center">
                 Підручники
                 <span class="badge badge-primary badge-pill">4</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 Комікси
                 <span class="badge badge-primary badge-pill">2</span>
-            </li>
+            </li>-->
         </ul>
 
         <div class="py-2 px-3 grey lighten-2 mt-3">

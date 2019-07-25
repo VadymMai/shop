@@ -36,6 +36,15 @@ app.get('/api/BookShop/GetBook/:id', (req, res) => {
     });
 });
 
+app.get('/api/BookShop/GetBooksById/:id', (req, res) => {
+    console.log(req.params.id);
+    products.find({cat_id: +req.params.id}).toArray((err, products) =>{
+        if(err) return console.log(err);
+        console.log(products);
+        res.send(products);
+    });
+});
+
 app.get('/api/BookShop/GetAllBooks', (req, res) => {
     products.find({}).toArray((err, products) =>{
         if(err) return console.log(err);
