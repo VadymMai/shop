@@ -1,5 +1,7 @@
 <div class="row">
-    <h1 class="pb-4 mb-4 mx-3 border-bottom w-100">{{dataService.products[0].cat_name}}</h1>
+    <div *ngIf="dataService.productsByIdLoadCheck; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock><h1 class="pb-4 mb-4 mx-3 border-bottom w-100">{{dataService.productsById[0].cat_name}}</h1></ng-template>
+    <ng-template #elseBlock><h1 class="pb-4 mb-4 mx-3 border-bottom w-100">Книги</h1></ng-template>
 </div>
 <div class="row wow fadeIn">
     <div class="col-12 col-md-3 pl-lg-0">
@@ -47,7 +49,7 @@
     </div>
     <div class="col-12 col-md-9">
         <div class="row">
-            <app-product-card class="col-md-6 col-lg-4 mb-4" *ngFor="let i of dataService.products" [product]="i"></app-product-card>
+            <app-product-card class="col-md-6 col-lg-4 mb-4" *ngFor="let i of dataService.productsById" [product]="i"></app-product-card>
         </div>
     </div>
 </div>

@@ -388,6 +388,7 @@ export class DataService {
       additional: 'Психологічні поради, схеми дій, багатий ілюстративний матеріал сприятимуть легкому засвоєнню матеріалу. Можливо, ця книга не зможе зберегти дітей від усіх неприємностей, але в першу чергу вона навчить слідувати головному - не втрачати голову і бути готовими діяти!'
     }
   ];
+  public productsByIdLoadCheck = false;
 
   public categories: Category[] = [];
   private localCategories: Category[] = [
@@ -424,11 +425,12 @@ export class DataService {
     if (!this.categories.length) {
       return this.http.get<Category[]>(this.apiUrl + 'BookShop/GetAllCategories').pipe(
         tap((categories: Category[]) => {
-          console.log('categories: ', categories);
+          console.log('getCategories: ', categories);
           this.categories = categories;
+          console.log('getCategories length: ', categories.length);
         }),
         catchError(err => {
-          console.log(err.message);
+          console.log('getCategories: ', err.message);
           this.categories = this.localCategories;
           return throwError(err);
         })
@@ -454,26 +456,12 @@ export class DataService {
   getProduct(id: number) {
     return this.http.get<Product>(this.apiUrl + 'BookShop/GetBook/' + id).pipe(
       tap((product: Product) => {
-        console.log('product: ', product);
+        console.log('getProduct: ', product);
         this.product = product;
       }),
       catchError(err => {
-        console.log(err.message);
+        console.log('getProduct: ', err.message);
         this.product = this.localProduct;
-        return throwError(err);
-      })
-    );
-  }
-
-  getProductsById(id: number): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl + 'BookShop/GetBooksById' + id).pipe(
-      tap((products: Product[]) => {
-        console.log('products: ', products);
-        this.products = products;
-      }),
-      catchError(err => {
-        console.log(err.message);
-        this.products = this.localProducts;
         return throwError(err);
       })
     );
@@ -482,12 +470,28 @@ export class DataService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl + 'BookShop/GetAllBooks').pipe(
       tap((products: Product[]) => {
-        console.log('products: ', products);
+        console.log('getProducts: ', products);
         this.products = products;
       }),
       catchError(err => {
-        console.log(err.message);
+        console.log('getProducts: ', err.message);
         this.products = this.localProducts;
+        return throwError(err);
+      })
+    );
+  }
+
+  getProductsById(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl + 'BookShop/GetBooksById/' + id).pipe(
+      tap((products: Product[]) => {
+        console.log('getProductsById: ', products);
+        this.productsById = products;
+        this.productsByIdLoadCheck = true;
+        console.log('productsLoadCheck: ', this.productsByIdLoadCheck);
+      }),
+      catchError(err => {
+        console.log('getProductsById: ', err.message);
+        this.productsById = this.localProductsById;
         return throwError(err);
       })
     );
@@ -496,10 +500,10 @@ export class DataService {
   deleteProduct(id: number) {
     return this.http.delete<Product>(this.apiUrl + 'BookShop/DeleteBook/' + id).pipe(
       tap((product: Product) => {
-        console.log('Deleted product: ', product);
+        console.log('deleteProduct: ', product);
       }),
       catchError(err => {
-        console.log(err.message);
+        console.log('deleteProduct: ', err.message);
         return throwError(err);
       })
     );

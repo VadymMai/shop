@@ -9,11 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
 
-    constructor(private dataService: DataService, private route: ActivatedRoute) {
+    constructor(private dataService: DataService, private activateRoute: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.dataService.getProduct(this.route.snapshot.params.id).subscribe();
+        this.dataService.getProduct(this.activateRoute.snapshot.params.id).subscribe();
     }
 
 }

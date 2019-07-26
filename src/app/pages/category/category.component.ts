@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category',
@@ -9,11 +11,17 @@ import { DataService } from '../../services/data.service';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private dataService: DataService) {
+  private subscription: Subscription;
+
+  constructor(private dataService: DataService, private activateRoute: ActivatedRoute) {
+    this.subscription = activateRoute.params.subscribe(params => {
+      console.log(params.id);
+      this.dataService.getProductsById(this.activateRoute.snapshot.params.id).subscribe();
+    });
   }
 
   ngOnInit() {
-    this.dataService.getProductsById(1).subscribe();
+    this.dataService.getProductsById(this.activateRoute.snapshot.params.id).subscribe();
     this.dataService.getCategories().subscribe();
   }
 

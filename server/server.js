@@ -90,12 +90,20 @@ app.get('/api/BookShop/GetAllCategories', (req, res) => {
                 result.push({
                     cat_id: item.cat_id,
                     cat_name: item.cat_name,
-                    cat_img: item.cat_img
+                    cat_img: item.cat_img,
+                    count: 0
                 });
+            } else {
+                result.map((cat) => {
+                    if (cat) {
+
+                    }
+                })
+                console.log(result);
             }
             return result;
         }, []);
-        console.log(categories);
+        //console.log(categories);
         res.send(categories);
     });
 });
