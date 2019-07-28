@@ -3,6 +3,10 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark indigo scrolling-navbar">
         <div class="container">
 
+            <a *ngIf="historyLength" (click)="dataService.goBack()" class="btn btn-info btn-back btn-rounded btn-sm px-3 m-0 mr-3 waves-effect waves-light">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+
             <!-- Brand -->
             <a class="navbar-brand waves-effect" routerLink="/">
                 <strong class="white-text">Book Store</strong>

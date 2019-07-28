@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 export interface Product {
   _id: number;
@@ -430,12 +431,14 @@ export class DataService {
 
   public user: User;
   public addedUser: User;
+  public loginedUser: User;
   public addUserCheck = new BehaviorSubject(null);
+  public logInCheck = new BehaviorSubject(null);
 
   public apiUrl = 'http://localhost:3001/api/';
   // public apiUrl = 'http://185.227.108.238:3001/api/';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private location: Location) {}
 
   getCategories(): Observable<Category[]> {
     if (!this.categories.length) {
@@ -549,16 +552,24 @@ export class DataService {
   logIn(user: User) {
     return this.http.post<User>(this.apiUrl + 'Account/LogIn', user).subscribe(
       (data: User) => {
-        this.addedUser = data;
+        this.loginedUser = data;
         console.log(data);
-        this.addUserCheck.next(data);
+        this.logInCheck.next(data);
       },
       err => console.log(err)
     );
   }
 
-  public resetAddUserCheck() {
+  resetAddUserCheck() {
     this.addUserCheck.next('');
+  }
+
+  resetLogInCheck() {
+    this.logInCheck.next('');
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   goHome() {

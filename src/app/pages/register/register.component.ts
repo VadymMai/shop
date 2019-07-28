@@ -19,16 +19,15 @@ export class RegisterComponent implements OnInit {
     } else {
       console.log('NOT this.dataService.addUserCheck.value !== null');
     }*/
-    this.dataService.addUserCheck
-      .subscribe((value: any) => {
-        if (value) {
-          this.openSnackBar(value);
-          if (value.loginName) {
-            this.dataService.goHome();
-            this.dataService.resetAddUserCheck();
-          }
+    this.dataService.addUserCheck.subscribe((value: any) => {
+      if (value) {
+        this.openSnackBar(value);
+        if (value.loginName) {
+          this.dataService.goBack();
         }
-      });
+        this.dataService.resetAddUserCheck();
+      }
+    });
   }
 
   openSnackBar(value) {

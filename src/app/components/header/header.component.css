@@ -1,1 +1,9 @@
+.btn-rounded {
+    border-radius: 10em;
+}
 
+.btn-back i {
+    font-size: 16px;
+    line-height: 11px;
+    vertical-align: middle;
+}

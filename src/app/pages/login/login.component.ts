@@ -19,19 +19,19 @@ export class LoginComponent implements OnInit {
     } else {
       console.log('NOT this.dataService.addUserCheck.value !== null');
     }*/
-    /*this.dataService.addUserCheck.subscribe((value: any) => {
+    this.dataService.logInCheck.subscribe((value: any) => {
       if (value) {
         this.openSnackBar(value);
         if (value.loginName) {
-          this.dataService.goHome();
-          this.dataService.resetAddUserCheck();
+          this.dataService.goBack();
         }
+        this.dataService.resetLogInCheck();
       }
-    });*/
+    });
   }
 
   openSnackBar(value) {
-    const data = (value.message) ? 'Такий Email вже використовується. Спробуйте авторизуватись, або використовуйте інший Email.' : 'Реєстрація успішна';
+    const data = (value.message) ? 'Неправильний Email або пароль. Спробуйте ще раз.' : 'Авторизація успішна';
     const panelClass = (value.message) ? 'snack-error' : 'snack-success';
     this.snackBar.openFromComponent(SnackbarComponent, {
       duration: 5000,

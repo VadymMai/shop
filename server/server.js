@@ -191,7 +191,7 @@ app.post('/api/Account/LogIn', jsonParser, (req, res) => {
     users.findOne({loginName: req.body.loginName}, (err, user) => {
         if(err) return console.log(err);
         console.log('login', user);
-        if (user && user.loginName === req.body.loginName) {
+        if (user && user.password === req.body.password) {
             res.send(user);
         } else {
             res.send({message: 'authFailed'});
