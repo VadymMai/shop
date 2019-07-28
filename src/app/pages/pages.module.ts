@@ -12,7 +12,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent, PizzaPartyComponent } from './register/register.component';
+import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
@@ -29,7 +29,6 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     ProductComponent,
     LoginComponent,
     RegisterComponent,
-    PizzaPartyComponent,
     CartComponent,
     CheckoutComponent,
     AdminProductsComponent,
@@ -42,7 +41,6 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule
-  ],
-  entryComponents: [ PizzaPartyComponent ]
+  ]
 })
 export class PagesModule { }

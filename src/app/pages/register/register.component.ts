@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService, User } from '../../services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../../components/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   constructor(private dataService: DataService, private snackBar: MatSnackBar) { }
 
   openSnackBar() {
-    this.snackBar.openFromComponent(PizzaPartyComponent, {
+    this.snackBar.openFromComponent(SnackbarComponent, {
       duration: 2000
     });
   }
@@ -39,16 +40,3 @@ export class RegisterComponent implements OnInit {
   }
 
 }
-
-@Component({
-  selector: 'app-snack-bar',
-  template: `<span class="example-pizza-party">
-                Pizza party!!! 🍕
-             </span>`,
-  styles: [`
-    .example-pizza-party {
-      color: hotpink;
-    }
-  `],
-})
-export class PizzaPartyComponent {}

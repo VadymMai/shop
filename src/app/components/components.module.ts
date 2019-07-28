@@ -47,6 +47,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     CategoryCardComponent,
     ProductCardComponent,
     FiltersAsideComponent
-  ]
+  ],
+  entryComponents: [ SnackbarComponent ]
 })
 export class ComponentsModule { }
