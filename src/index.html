@@ -23,5 +23,31 @@
       new WOW().init();
   </script>
 
+  <script>
+    function ready(fn) {
+      if (document.readyState != 'loading'){
+        fn();
+      } else {
+        document.addEventListener('DOMContentLoaded', fn);
+      }
+    }
+
+    ready(fn);
+
+    function fn() {
+      $('body').on('focus', 'input.form-control', (e) => {
+        $(e.target).next('label').addClass('active');
+        //console.log('Элемент foo получил фокус.');
+      });
+
+      $('body').on('blur', 'input.form-control', (e) => {
+        if (!$(e.target).val()) {
+          $(e.target).next('label').removeClass('active');
+          //console.log('Элемент foo потерял фокус.');
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>

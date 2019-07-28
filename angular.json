@@ -31,7 +31,8 @@
             "scripts": [
               "node_modules/mdbootstrap/js/jquery-3.4.1.min.js",
               "node_modules/mdbootstrap/js/bootstrap.min.js",
-              "node_modules/mdbootstrap/js/mdb.min.js"
+              "node_modules/mdbootstrap/js/mdb.min.js",
+              "src/common.js"
             ]
           },
           "configurations": {

@@ -14,19 +14,6 @@ export class AdminProductsComponent implements OnInit {
   addProductForm: FormGroup;
   newCategory = false;
 
-  /*id = 0;
-  name = '';
-  img = '';
-  catName = '';
-  catId = 0;
-  catImg = '';
-  author = '';
-  isbn = '';
-  price: number;
-  oldPrice: number;
-  description = '';
-  additional = '';*/
-
   constructor(private dataService: DataService) {}
 
   addProduct() {

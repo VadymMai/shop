@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CategoryCardComponent } from './category-card/category-card.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { FiltersAsideComponent } from './filters-aside/filters-aside.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FiltersAsideComponent } from './filters-aside/filters-aside.component';
     FooterComponent,
     CategoryCardComponent,
     ProductCardComponent,
-    FiltersAsideComponent
+    FiltersAsideComponent,
+    SnackbarComponent
   ],
   imports: [
     CommonModule,

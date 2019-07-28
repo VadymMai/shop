@@ -26,7 +26,7 @@ export interface Category {
 }
 
 export interface User {
-  id: number;
+  _id: number;
   loginName: string;
   password: string;
   roles: string;
@@ -52,6 +52,7 @@ export class DataService {
     description: '«JavaScript для детей» — веселое пособие, вступление к основам программирования, с которым вы шаг за шагом овладеете работой со строками, массивами и циклами, инструментами DOM и jQuery и элементом canvas для рисования графики. Вы сможете писать и модифицировать HTML-элементы для создания динамических веб-страниц и напишите классные онлайн игры «Найди спрятанный клад», «Виселица» и «Змейка».',
     additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
   };
+  public addedProduct: Product;
 
   public products: Product[] = [];
   private localProducts: Product[] = [
@@ -426,7 +427,8 @@ export class DataService {
     }
     ];
 
-  public addedProduct: Product;
+  public user: User;
+  public addedUser: User;
 
   public apiUrl = 'http://localhost:3001/api/';
   // public apiUrl = 'http://185.227.108.238:3001/api/';
@@ -525,6 +527,16 @@ export class DataService {
     return this.http.post<Product>(this.apiUrl + 'BookShop/CreateNewBook', product).subscribe(
       (data: Product) => {
         this.addedProduct = data;
+        console.log(data);
+      },
+      err => console.log(err)
+    );
+  }
+
+  addUser(user: User) {
+    return this.http.post<User>(this.apiUrl + 'Account/AddUser', user).subscribe(
+      (data: User) => {
+        this.addedUser = data;
         console.log(data);
       },
       err => console.log(err)

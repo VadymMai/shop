@@ -4,13 +4,15 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const mongoClient = new MongoClient("mongodb://localhost:27017/", {useNewUrlParser: true});
 const jsonParser = express.json();
-let clientDb, db, products;
+let clientDb, db, products, users;
 
 mongoClient.connect((err, client) => {
     if(err) return console.log(err);
     clientDb = client;
     db = client.db('data');
     products = db.collection('products');
+    users = db.collection('users');
+    users.createIndex({'loginName' : 1}, {'unique' : true});
     app.listen(3001, (err) => {
         if (err) return console.log('something bad happened', err);
         console.log('Сервер ожидает подключения...');
@@ -48,7 +50,7 @@ app.get('/api/BookShop/GetBooksById/:id', (req, res) => {
 app.get('/api/BookShop/GetAllBooks', (req, res) => {
     products.find({}).toArray((err, products) =>{
         if(err) return console.log(err);
-        console.log(products);
+        //console.log(products);
         res.send(products);
     });
 });
@@ -156,6 +158,30 @@ app.post('/api/BookShop/CreateNewBook', jsonParser, (req, res) => {
     });
 });
 
+app.post('/api/Account/AddUser', jsonParser, (req, res) => {
+    if(!req.body) {
+        console.log('Помилка отриманих даних');
+        return res.sendStatus(400);
+    }
+    console.log(req.body);
+    let user = {
+        loginName: req.body.loginName,
+        password: req.body.password,
+        roles: req.body.roles
+    };
+    users.insertOne(user, (err, result) => {
+        if(err) {
+            console.log(err);
+            if (err.code == 11000) {
+                return res.send({message: 'notUnique'});
+            }
+            return res.sendStatus(400);
+        }
+        console.log('Доданий 1 user:', result.ops[0]);
+        res.send(result.ops[0]);
+    });
+});
+
 app.get('/productinsert', (req, res) => {
     let cursor = products.find().sort({"_id": -1}).limit(1);
     cursor.toArray().then(arr => {
@@ -194,3 +220,5 @@ process.on('SIGINT', () => {
     clientDb.close();
     process.exit();
 });
+
+
