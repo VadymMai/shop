@@ -19,15 +19,11 @@
         <div>
 
             <div class="mb-3">
-                <a href="">
+                <a routerLink="/categories/{{dataService.product.cat_id}}">
                     <span class="badge purple mr-1">{{dataService.product.cat_name}}</span>
                 </a>
-                <a href="">
-                    <span class="badge blue mr-1">New</span>
-                </a>
-                <a href="">
-                    <span class="badge red mr-1">Bestseller</span>
-                </a>
+                <span class="badge blue mr-1">New</span>
+                <span class="badge red mr-1">Bestseller</span>
             </div>
 
             <p class="lead">

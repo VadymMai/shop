@@ -22,6 +22,14 @@ export interface Category {
   cat_name: string;
   cat_id: number;
   cat_img: string;
+  count: number;
+}
+
+export interface User {
+  id: number;
+  loginName: string;
+  password: string;
+  roles: string;
 }
 
 @Injectable({
@@ -395,22 +403,26 @@ export class DataService {
     {
       cat_id: 1,
       cat_name: 'Дитячі книги',
-      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
+      count: 3
     },
     {
       cat_id: 2,
       cat_name: 'Художня література',
-      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
+      count: 3
     },
     {
       cat_id: 3,
       cat_name: 'Бізнес література',
-      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
+      count: 3
     },
     {
       cat_id: 4,
       cat_name: 'Книги для батьків',
-      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg'
+      cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
+      count: 3
     }
     ];
 

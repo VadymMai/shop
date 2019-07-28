@@ -91,15 +91,10 @@ app.get('/api/BookShop/GetAllCategories', (req, res) => {
                     cat_id: item.cat_id,
                     cat_name: item.cat_name,
                     cat_img: item.cat_img,
-                    count: 0
+                    count: 1
                 });
             } else {
-                result.map((cat) => {
-                    if (cat) {
-
-                    }
-                })
-                console.log(result);
+                result.map((cat) => (cat.cat_id === item.cat_id) ? cat.count++ : cat.count);
             }
             return result;
         }, []);
