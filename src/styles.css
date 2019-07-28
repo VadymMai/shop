@@ -9,3 +9,13 @@ body {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
     background: #fff;
 }
+
+.snack-error {
+    background-color: #ff3547;
+    color: #fff;
+}
+
+.snack-success {
+    background-color: #00c851;
+    color: #fff;
+}

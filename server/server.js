@@ -182,6 +182,23 @@ app.post('/api/Account/AddUser', jsonParser, (req, res) => {
     });
 });
 
+app.post('/api/Account/LogIn', jsonParser, (req, res) => {
+    if(!req.body) {
+        console.log('Помилка отриманих даних');
+        return res.sendStatus(400);
+    }
+    console.log(req.body);
+    users.findOne({loginName: req.body.loginName}, (err, user) => {
+        if(err) return console.log(err);
+        console.log('login', user);
+        if (user && user.loginName === req.body.loginName) {
+            res.send(user);
+        } else {
+            res.send({message: 'authFailed'});
+        }
+    });
+});
+
 app.get('/productinsert', (req, res) => {
     let cursor = products.find().sort({"_id": -1}).limit(1);
     cursor.toArray().then(arr => {
