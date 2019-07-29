@@ -19,3 +19,9 @@ body {
     background-color: #00c851;
     color: #fff;
 }
+
+.not-link {
+    cursor: default;
+}
+
+

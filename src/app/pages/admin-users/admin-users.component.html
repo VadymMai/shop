@@ -1,1 +1,52 @@
-<p>admin-users works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="dataService.users" class="table-responsive">
+                    <table class="table product-table">
+                        <thead class="mdb-color lighten-5">
+                        <tr>
+                            <th class="font-weight-bold">
+                                <strong>№</strong>
+                            </th>
+                            <th class="font-weight-bold">
+                                <strong>Email</strong>
+                            </th>
+                            <th class="font-weight-bold">
+                                <strong>Role</strong>
+                            </th>
+                            <th class="font-weight-bold">
+                                <strong>Change role</strong>
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of dataService.users; let i = index">
+                            <td>
+                                <strong>{{i+1}}</strong>
+                            </td>
+                            <td>
+                                <strong>{{item.loginName}}</strong>
+                            </td>
+                            <td>
+                                <strong>{{item.roles}}</strong>
+                            </td>
+                            <td>
+                                <input value="{{item.roles}}" class="form-control" style="width: 120px">
+                            </td>
+                            <td>
+                                <button class="btn btn-default btn-md my-0" type="submit">Change role</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-md my-0" type="submit">X</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

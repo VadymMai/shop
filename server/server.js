@@ -199,6 +199,14 @@ app.post('/api/Account/LogIn', jsonParser, (req, res) => {
     });
 });
 
+app.get('/api/BookShop/GetAllUsers', (req, res) => {
+    users.find({}).toArray((err, users) =>{
+        if(err) return console.log(err);
+        //console.log(users);
+        res.send(users);
+    });
+});
+
 app.get('/productinsert', (req, res) => {
     let cursor = products.find().sort({"_id": -1}).limit(1);
     cursor.toArray().then(arr => {

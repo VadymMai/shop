@@ -7,3 +7,22 @@
     line-height: 11px;
     vertical-align: middle;
 }
+
+.dropdown-toggle.admin-menu::after {
+    font-size: 18px;
+}
+
+.admin-menu {
+    font-size: 13px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin: 4px 16px 0 8px !important;
+}
+
+.admin-menu i {
+    font-size: 14px;
+}
+
+.dropdown-toggle::after {
+    vertical-align: middle;
+}

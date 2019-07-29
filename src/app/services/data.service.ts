@@ -28,7 +28,7 @@ export interface Category {
 }
 
 export interface User {
-  _id: number;
+  _id: any;
   loginName: string;
   password: string;
   roles: string;
@@ -49,7 +49,7 @@ export class DataService {
     cat_img: 'https://blogs.ntu.edu.sg/files/2014/07/change_default_category.jpg',
     author: 'Морґан Нік',
     isbn: '978-617-679-479-0',
-    price: 221 ,
+    price: 221,
     old_price: 320,
     description: '«JavaScript для детей» — веселое пособие, вступление к основам программирования, с которым вы шаг за шагом овладеете работой со строками, массивами и циклами, инструментами DOM и jQuery и элементом canvas для рисования графики. Вы сможете писать и модифицировать HTML-элементы для создания динамических веб-страниц и напишите классные онлайн игры «Найди спрятанный клад», «Виселица» и «Змейка».',
     additional: 'В этой книге — множество интересных примеров и забавных иллюстраций, а задача по программированию в конце каждого раздела, вдохновят на создание собственных потрясающих программ. Сотворим что-то крутое с JavaScript!'
@@ -429,14 +429,35 @@ export class DataService {
     }
     ];
 
-  public user: User;
-  public addedUser: User;
-  public loginedUser: User;
+  public users: User[] = [];
+  private localUsers: User[] = [
+    {
+      _id: '5d3e975fb5a0972f8833ea00',
+      loginName: 'qq@qq',
+      password: 'qqqq',
+      roles: 'user'
+    },
+    {
+      _id: '5d3ea6abb5a0972f8833ea02',
+      loginName: 'admin@admin',
+      password: 'admin@admin',
+      roles: 'admin'
+    }
+  ];
   public addUserCheck = new BehaviorSubject(null);
   public logInCheck = new BehaviorSubject(null);
+  public loggedCheck = false;
+  public adminCheck = false;
+  public loggedUser: User = null;
 
-  public apiUrl = 'http://localhost:3001/api/';
-  // public apiUrl = 'http://185.227.108.238:3001/api/';
+  public cart: any = {
+    count: 0,
+    total: 0,
+    items: []
+  };
+
+  // public apiUrl = 'http://localhost:3001/api/';
+  public apiUrl = 'http://185.227.108.238:3001/api/';
 
   constructor(private http: HttpClient, private router: Router, private location: Location) {}
 
@@ -444,9 +465,9 @@ export class DataService {
     if (!this.categories.length) {
       return this.http.get<Category[]>(this.apiUrl + 'BookShop/GetAllCategories').pipe(
         tap((categories: Category[]) => {
-          console.log('getCategories: ', categories);
+          // console.log('getCategories: ', categories);
           this.categories = categories;
-          console.log('getCategories length: ', categories.length);
+          // console.log('getCategories length: ', categories.length);
         }),
         catchError(err => {
           console.log('getCategories: ', err.message);
@@ -489,7 +510,7 @@ export class DataService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl + 'BookShop/GetAllBooks').pipe(
       tap((products: Product[]) => {
-        console.log('getProducts: ', products);
+        // console.log('getProducts: ', products);
         this.products = products;
       }),
       catchError(err => {
@@ -538,12 +559,30 @@ export class DataService {
     );
   }
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl + 'BookShop/GetAllUsers').pipe(
+      tap((users: User[]) => {
+        // console.log('getAllUsers: ', users);
+        this.users = users;
+      }),
+      catchError(err => {
+        console.log('getAllUsers: ', err.message);
+        this.products = this.localProducts;
+        return throwError(err);
+      })
+    );
+  }
+
   addUser(user: User) {
     return this.http.post<User>(this.apiUrl + 'Account/AddUser', user).subscribe(
       (data: User) => {
-        this.addedUser = data;
         console.log(data);
         this.addUserCheck.next(data);
+        if (data.loginName) {
+          this.loggedCheck = true;
+          console.log('logged as :', data.loginName);
+          this.loggedUser = data;
+        }
       },
       err => console.log(err)
     );
@@ -552,12 +591,38 @@ export class DataService {
   logIn(user: User) {
     return this.http.post<User>(this.apiUrl + 'Account/LogIn', user).subscribe(
       (data: User) => {
-        this.loginedUser = data;
         console.log(data);
         this.logInCheck.next(data);
+        if (data.loginName) {
+          this.loggedCheck = true;
+          console.log('logged as :', data.loginName);
+          this.loggedUser = data;
+          if (data.roles === 'admin') {
+            this.adminCheck = true;
+          }
+        }
       },
       err => console.log(err)
     );
+  }
+
+  addToCart(cartItem) {
+    let found = false;
+    this.cart.items.forEach(item => {
+      if (item.cartBody._id === cartItem.cartBody._id) {
+        // console.log('знайдено');
+        item.count += cartItem.count;
+        found = true;
+        return false;
+      }
+    });
+    if (!found) {
+      // console.log('незнайдено');
+      this.cart.items.push(cartItem);
+    }
+    this.cart.count += cartItem.count;
+    this.cart.total += cartItem.count * cartItem.cartBody.price;
+    console.log('cart', this.cart);
   }
 
   resetAddUserCheck() {
@@ -574,6 +639,13 @@ export class DataService {
 
   goHome() {
     this.router.navigate(['']);
+  }
+
+  signOut() {
+    this.loggedCheck = false;
+    this.adminCheck = false;
+    console.log('logged out');
+    this.loggedUser = null;
   }
 
 }

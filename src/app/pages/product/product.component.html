@@ -1,5 +1,5 @@
 <!--Grid row-->
-<div class="row wow fadeIn">
+<div *ngIf="dataService.product" class="row wow fadeIn">
 
     <!--Grid column-->
     <div class="col-md-6 mb-4 text-center">
@@ -37,13 +37,12 @@
 
             <p>{{dataService.product.description}}</p>
 
-            <form class="d-flex justify-content-left">
+            <form [formGroup]="addToCartForm" novalidate (ngSubmit)="addToCart()" class="d-flex justify-content-left">
                 <!-- Default input -->
-                <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-                <button class="btn btn-default btn-md my-0" type="submit">Add to cart
+                <input formControlName="count" name="count" min="1" type="number" aria-label="Search" class="form-control" style="width: 100px" required>
+                <button [disabled]="addToCartForm.invalid" class="btn btn-default btn-md my-0">Add to cart
                     <i class="fas fa-shopping-cart ml-1"></i>
                 </button>
-
             </form>
 
         </div>
@@ -58,7 +57,7 @@
 <hr>
 
 <!--Grid row-->
-<div class="row d-flex justify-content-center wow fadeIn">
+<div *ngIf="dataService.product" class="row d-flex justify-content-center wow fadeIn">
 
     <!--Grid column-->
     <div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService, Product } from '../../services/data.service';
-import { Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -34,7 +33,7 @@ export class AdminProductsComponent implements OnInit {
     console.log(product);
 
     /*const qqq = {
-      _id: 8,
+      _id: 12,
       name: 'Що робити коли...',
       img: 'https://i2.rozetka.ua/goods/2969930/32598239_images_2969930215.jpg',
       cat_name: 'Книги для батьків',
@@ -64,8 +63,6 @@ export class AdminProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.getProducts().subscribe();
-    this.dataService.getCategories().subscribe();
     this.addProductForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       img: new FormControl(null, Validators.required),

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         this.historyLength = event.id > 1;
-        console.log('event: ', event.id);
+        // console.log('event: ', event.id);
       }
       // NavigationEnd
       // NavigationCancel
