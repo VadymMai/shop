@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   public historyLength = false;
 
-  constructor(private dataService: DataService, private router: Router) {
+  constructor(public dataService: DataService, private router: Router) {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         this.historyLength = event.id > 1;

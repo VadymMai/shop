@@ -6,7 +6,7 @@ import { Input, Component, OnInit } from '@angular/core';
   styleUrls: ['./category-card.component.css']
 })
 export class CategoryCardComponent implements OnInit {
-  @Input() category: object;
+  @Input() category: any;
 
   constructor() { }
 

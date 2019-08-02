@@ -12,7 +12,7 @@ export class ProductComponent implements OnInit {
 
     addToCartForm: FormGroup;
 
-    constructor(private dataService: DataService, private activateRoute: ActivatedRoute) {}
+    constructor(public dataService: DataService, private activateRoute: ActivatedRoute) {}
 
     addToCart() {
         const cartItem: any = {
