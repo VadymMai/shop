@@ -3,6 +3,9 @@ const MongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 const https = require('https');
 
+const bodyParser = require('body-parser');
+const compression = require('compression');
+
 const app = express();
 const mongoClient = new MongoClient("mongodb://localhost:27017/", {useNewUrlParser: true});
 const jsonParser = express.json();
@@ -18,7 +21,7 @@ mongoClient.connect((err, client) => {
 });
 
 
-var key = fs.readFileSync('/certs/key.pem');
+/*var key = fs.readFileSync('/certs/key.pem');
 var cert = fs.readFileSync('/certs/uashop.pem');
 var options = {
     key: key,
@@ -28,11 +31,31 @@ var options = {
 var server = https.createServer(options, app);
 server.listen(3001, () => {
     console.log("server starting on port : " + 3001)
+});*/
+
+// const html = __dirname + '/index.html';
+const html = 'D:/projects/Angular/shop/dist/shop/index.html';
+const port = 4000;
+const apiUrl = '/api';
+
+app
+    .use(compression())
+    .use(bodyParser.json())
+    // Static content
+    .use(express.static(html))
+    // Default route
+    .use(function(req, res) {
+        res.sendFile(html);
+    });
+
+app.get('/app/*', function(req, res) {
+    res.sendFile(html)
 });
 
 app.listen(3001, (err) => {
     if (err) return console.log('something bad happened', err);
     console.log('Сервер ожидает подключения...');
+    console.log('Html: ' + html);
 });
 
 app.use((req, res, next) => {
