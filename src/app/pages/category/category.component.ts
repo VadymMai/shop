@@ -6,8 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css'],
-  providers: [DataService]
+  styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
 
@@ -23,6 +22,14 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.dataService.getProductsById(this.activateRoute.snapshot.params.id).subscribe();
     this.dataService.getCategories().subscribe();
+  }
+
+  addItem() {
+    this.dataService.test.push('cat99');
+  }
+
+  showItem() {
+    console.log('category ', this.dataService.test);
   }
 
 }

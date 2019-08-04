@@ -9,6 +9,7 @@ import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
+import {DataService} from './services/data.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { AppComponent } from './app.component';
     SharedModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

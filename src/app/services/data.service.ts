@@ -456,6 +456,8 @@ export class DataService {
     items: []
   };
 
+  public test = ['item1', 'item2', 'item3', 'item4', 'item5'];
+
   // public apiUrl = 'http://localhost:3001/api/';
   public apiUrl = 'http://185.227.108.238:3001/api/';
 

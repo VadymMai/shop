@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'categories/:id', component: CategoryComponent },
-  { path: 'categories/:id/:id', component: ProductComponent },
+  { path: 'categories/:caId/:id', component: ProductComponent },
   { path: 'admin/products', component: AdminProductsComponent },
   { path: 'admin/users', component: AdminUsersComponent },
 ];
