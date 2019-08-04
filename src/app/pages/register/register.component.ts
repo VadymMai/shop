@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   addUserForm: FormGroup;
 
-  constructor(private dataService: DataService, private snackBar: MatSnackBar) {
+  constructor(public dataService: DataService, private snackBar: MatSnackBar) {
     /*if (this.dataService.addUserCheck.value !== null) {
       console.log('this.dataService.addUserCheck.value !== null');
     } else {

@@ -13,7 +13,7 @@ export class AdminProductsComponent implements OnInit {
   addProductForm: FormGroup;
   newCategory = false;
 
-  constructor(private dataService: DataService) {}
+  constructor(public dataService: DataService) {}
 
   addProduct() {
     const product: Product = {

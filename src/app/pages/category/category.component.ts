@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
 
   private subscription: Subscription;
 
-  constructor(private dataService: DataService, private activateRoute: ActivatedRoute) {
+  constructor(public dataService: DataService, private activateRoute: ActivatedRoute) {
     this.subscription = activateRoute.params.subscribe(params => {
       console.log(params.id);
       this.dataService.getProductsById(this.activateRoute.snapshot.params.id).subscribe();

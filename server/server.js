@@ -1,5 +1,7 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
+const fs = require('fs');
+const https = require('https');
 
 const app = express();
 const mongoClient = new MongoClient("mongodb://localhost:27017/", {useNewUrlParser: true});
@@ -13,10 +15,24 @@ mongoClient.connect((err, client) => {
     products = db.collection('products');
     users = db.collection('users');
     users.createIndex({'loginName' : 1}, {'unique' : true});
-    app.listen(3001, (err) => {
-        if (err) return console.log('something bad happened', err);
-        console.log('Сервер ожидает подключения...');
-    });
+});
+
+
+var key = fs.readFileSync('/certs/key.pem');
+var cert = fs.readFileSync('/certs/uashop.pem');
+var options = {
+    key: key,
+    cert: cert
+};
+
+var server = https.createServer(options, app);
+server.listen(3001, () => {
+    console.log("server starting on port : " + 3001)
+});
+
+app.listen(3001, (err) => {
+    if (err) return console.log('something bad happened', err);
+    console.log('Сервер ожидает подключения...');
 });
 
 app.use((req, res, next) => {
