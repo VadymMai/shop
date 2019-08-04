@@ -24,12 +24,4 @@ export class CategoryComponent implements OnInit {
     this.dataService.getCategories().subscribe();
   }
 
-  addItem() {
-    this.dataService.test.push('cat99');
-  }
-
-  showItem() {
-    console.log('category ', this.dataService.test);
-  }
-
 }

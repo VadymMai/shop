@@ -159,9 +159,9 @@ app.post('/api/BookShop/CreateNewBook', jsonParser, (req, res) => {
         let product = req.body;
         product._id = _id;
 
-        /*if (product.cat_id === 0) {
+        if (product.cat_id === 0) {
             product.cat_id = 0;
-        }*/
+        }
 
         products.insertOne(product, (err, result) => {
             if(err) {
