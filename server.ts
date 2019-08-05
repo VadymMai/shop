@@ -26,8 +26,10 @@ const MongoClient = require('mongodb').MongoClient;
 const jsonParser = express.json();
 
 const mongoClient = new MongoClient('mongodb+srv://root:Ghbdtngh1@cluster0-yhi5k.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
-// tslint:disable-next-line:one-variable-per-declaration
-let clientDb, db, products, users;
+let clientDb;
+let db;
+let products;
+let users;
 
 mongoClient.connect((err, client) => {
   if (err) {
@@ -72,20 +74,18 @@ app.get('/api/BookShop/GetBook/:id', (req, res) => {
 
 app.get('/api/BookShop/GetBooksById/:id', (req, res) => {
   console.log(req.params.id);
-  // tslint:disable-next-line:no-shadowed-variable
-  products.find({cat_id: +req.params.id}).toArray((err, products) => {
+  products.find({cat_id: +req.params.id}).toArray((err, prods) => {
     if (err) { return console.log(err); }
-    console.log(products);
-    res.send(products);
+    // console.log(prods);
+    res.send(prods);
   });
 });
 
 app.get('/api/BookShop/GetAllBooks', (req, res) => {
-  // tslint:disable-next-line:no-shadowed-variable
-  products.find({}).toArray((err, products) => {
+  products.find({}).toArray((err, prods) => {
     if (err) { return console.log(err); }
-    // console.log(products);
-    res.send(products);
+    // console.log(prods);
+    res.send(prods);
   });
 });
 
@@ -117,11 +117,10 @@ app.get('/api/BookShop/DeleteAllBooks', (req, res) => {
 });
 
 app.get('/api/BookShop/GetAllCategories', (req, res) => {
-  // tslint:disable-next-line:no-shadowed-variable
-  products.find({}).toArray((err, products) => {
+  products.find({}).toArray((err, prods) => {
     if (err) { return console.log(err); }
     const filteredList = [];
-    const categories = products.reduce((result, item) => {
+    const categories = prods.reduce((result, item) => {
       if (!filteredList.includes(item.cat_id)) {
         filteredList.push(item.cat_id);
         result.push({
@@ -149,12 +148,11 @@ app.post('/api/BookShop/CreateNewBook', jsonParser, (req, res) => {
 
   const cursor = products.find().sort({_id: -1}).limit(1);
   cursor.toArray().then(arr => {
-    // tslint:disable-next-line:variable-name
-    let _id = 1;
-    if (arr.length > 0) { _id = arr[0]._id + 1; }
+    let id = 1;
+    if (arr.length > 0) { id = arr[0]._id + 1; }
 
     const product = req.body;
-    product._id = _id;
+    product._id = id;
 
     if (product.cat_id === 0) {
       product.cat_id = 0;
@@ -185,7 +183,6 @@ app.post('/api/Account/AddUser', jsonParser, (req, res) => {
   users.insertOne(user, (err, result) => {
     if (err) {
       console.log(err);
-      // tslint:disable-next-line:triple-equals
       if (err.code === 11000) {
         return res.send({message: 'notUnique'});
       }
@@ -214,20 +211,18 @@ app.post('/api/Account/LogIn', jsonParser, (req, res) => {
 });
 
 app.get('/api/BookShop/GetAllUsers', (req, res) => {
-  // tslint:disable-next-line:no-shadowed-variable
-  users.find({}).toArray((err, users) => {
+  users.find({}).toArray((err, usersArr) => {
     if (err) { return console.log(err); }
-    // console.log(users);
-    res.send(users);
+    // console.log(usersArr);
+    res.send(usersArr);
   });
 });
 
 app.get('/productinsert', (req, res) => {
   const cursor = products.find().sort({_id: -1}).limit(1);
   cursor.toArray().then(arr => {
-    // tslint:disable-next-line:variable-name
-    let _id = 1;
-    if (arr.length > 0) { _id = arr[0]._id + 1; }
+    let id = 1;
+    if (arr.length > 0) { id = arr[0]._id + 1; }
 
     const product = {
       _id: 4,
@@ -243,7 +238,7 @@ app.get('/productinsert', (req, res) => {
       description: '«Що робити, коли ...» - повчальна книга для дітей, яка навчить взаємодіяти з незнайомими людьми, відповідати на образливі слова, запобігати виникненню небезпечних ситуацій, вести себе в людних місцях. Написана вона кваліфікованим психологом і педагогом та стане добрим другом і порадником для дитини! Ця книжка допоможе дитині не розгубитися, знайти правильний вихід з різноманітних складних ситуацій, які можуть трапитися в житті кожної людини.',
       additional: 'Психологічні поради, схеми дій, багатий ілюстративний матеріал сприятимуть легкому засвоєнню матеріалу. Можливо, ця книга не зможе зберегти дітей від усіх неприємностей, але в першу чергу вона навчить слідувати головному - не втрачати голову і бути готовими діяти!'
     };
-    product._id = _id;
+    product._id = id;
 
     products.insertOne(product, (err, result) => {
       if (err) {
@@ -255,7 +250,6 @@ app.get('/productinsert', (req, res) => {
     });
   });
 });
-
 
 app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'
