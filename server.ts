@@ -25,21 +25,20 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const jsonParser = express.json();
 
-const mongoClient = new MongoClient('mongodb+srv://root:Ghbdtngh1@cluster0-yhi5k.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useFindAndModify: false});
+const mongoClient = new MongoClient('mongodb+srv://root:Ghbdtngh1@cluster0-yhi5k.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 let db;
 let products;
 let users;
 
 mongoClient.connect((err, client) => {
   if (err) {
-    console.clear();
-    console.log(err);
-    console.log('================================================');
+    return console.log(err);
   }
+  console.log('connect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   db = client.db('data');
   products = db.collection('products');
   users = db.collection('users');
-  users.createIndex({loginName: 1}, {unique: true});
+  users.createIndex({loginName : 1}, {unique : true});
 });
 
 const PORT = process.env.PORT || 8080;
