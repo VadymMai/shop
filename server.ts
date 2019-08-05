@@ -25,17 +25,17 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const jsonParser = express.json();
 
-const mongoClient = new MongoClient('mongodb+srv://root:Ghbdtngh1@cluster0-yhi5k.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
-let clientDb;
+const mongoClient = new MongoClient('mongodb+srv://root:Ghbdtngh1@cluster0-yhi5k.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useFindAndModify: false});
 let db;
 let products;
 let users;
 
 mongoClient.connect((err, client) => {
   if (err) {
-    return console.log(err);
+    console.clear();
+    console.log(err);
+    console.log('================================================');
   }
-  clientDb = client;
   db = client.db('data');
   products = db.collection('products');
   users = db.collection('users');
