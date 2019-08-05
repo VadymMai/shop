@@ -15,20 +15,29 @@ mongoClient.connect((err, client) => {
     users.createIndex({'loginName' : 1}, {'unique' : true});
 });
 
+const DIST_FOLDER = 'dist';
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', DIST_FOLDER+'/shop');
 
-app.listen(3001, (err) => {
+const html = 'dist/shop/index.html';
+const port = 8080;
+const apiUrl = '/api';
+
+app.get('/app/*', function(req, res) {
+    res.sendFile(html)
+});
+
+app.listen(port, (err) => {
     if (err) return console.log('something bad happened', err);
     console.log('Сервер ожидает подключения...');
+    console.log('Html: ' + html);
 });
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-});
-
-app.get('/', (request, response) => {
-    response.send('Hello from Express!')
 });
 
 app.get('/api/BookShop/GetBook/:id', (req, res) => {
@@ -242,10 +251,16 @@ app.get('/productinsert', (req, res) => {
     });
 });
 
+app.get('*.*', express.static(DIST_FOLDER+'/shop'));
+
+// All regular routes use the Universal engine
+app.get('*', (req, res) => {
+    res.render('index', { req });
+});
+
 // прослушиваем прерывание работы программы (ctrl-c)
 process.on('SIGINT', () => {
     clientDb.close();
     process.exit();
 });
-
 
