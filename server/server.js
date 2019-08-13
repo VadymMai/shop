@@ -2,7 +2,8 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
-const mongoClient = new MongoClient("mongodb+srv://root:Ghbdtngh1@cluster0-yhi5k.gcp.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
+// const mongoClient = new MongoClient('mongodb+srv://root:Ghbdtngh1@cluster0-yhi5k.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
+const mongoClient = new MongoClient('mongodb://localhost:27017', {useNewUrlParser: true});
 const jsonParser = express.json();
 let clientDb, db, products, users;
 

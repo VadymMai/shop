@@ -12,6 +12,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import {CheckAdminGuard} from '../shared/check-admin.guard';
 
 
 const routes: Routes = [
@@ -25,8 +26,8 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'categories/:id', component: CategoryComponent },
   { path: 'categories/:caId/:id', component: ProductComponent },
-  { path: 'admin/products', component: AdminProductsComponent },
-  { path: 'admin/users', component: AdminUsersComponent },
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [CheckAdminGuard] },
+  { path: 'admin/users', component: AdminUsersComponent, canActivate: [CheckAdminGuard] },
 ];
 
 @NgModule({
