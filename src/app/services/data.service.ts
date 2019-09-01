@@ -647,7 +647,7 @@ export class DataService {
     this.adminCheck = false;
     console.log('logged out');
     this.loggedUser = null;
-    if (this.router.url === '/admin/users') {
+    if (this.router.url.indexOf('/admin/') === 0) {
       this.router.navigate(['/login']);
     }
   }
