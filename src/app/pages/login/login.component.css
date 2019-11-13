@@ -19,3 +19,8 @@ input.ng-touched.ng-valid:focus {
     box-shadow: 0 1px 0 0 #28a745;
     border-bottom: 1px solid #28a745;
 }
+
+input.form-control-custom:focus + label {
+    transform: translateY(-14px) scale(.8);
+    color: #757575;
+}
